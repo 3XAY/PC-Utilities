@@ -2,47 +2,117 @@
 from tkinter import * #GUI
 import time #Delays
 import pyautogui #Macros
+import os #opening apps
 
 # Initialize screen
 screen = Tk()
 screen.geometry("1000x400")
+screen.title("Windows Debug (Custom made)")
 
-#Set Button Defaults
+#Create text
+warning = Label(screen, text = "Created by 3XAY. This software is not responsible for any harm caused to any computers.")
+warning.place(x=0, y=375)
+
+#Set Defaults
 btnHeight = 2
 btnWidth = 10
 btnX = 75
 btnY = 75
+waitTime = 2
 
 #Methods
 def openDiskClean():
-	exit
+	print("")
+	print("Opening disk cleanup")
+	pyautogui.press("win")
+	pyautogui.typewrite("Disk Cleanup")
+	time.sleep(waitTime)
+	pyautogui.press("enter")
+	print("Opened disk cleanup")
 
 def openDefrag():
-	exit
+	print("")
+	print("Opening defrag")
+	pyautogui.press("win")
+	pyautogui.typewrite("Defragment and Optimize Drives")
+	time.sleep(waitTime)
+	pyautogui.press("enter")
+	print("Opened defrag")
 
 def openUpdate():
-	exit
+	print("")
+	print("Opening Windows Update")
+	pyautogui.press("win")
+	pyautogui.typewrite("Windows Update")
+	time.sleep(waitTime)
+	pyautogui.press("enter")
+	print("Opened Windows Update")
 
 def openPowerPlan():
-	exit
+	print("")
+	print("Opening power plan settings")
+	pyautogui.press("win")
+	pyautogui.typewrite("Choose a power plan")
+	time.sleep(waitTime)
+	pyautogui.press("enter")
+	print("Opened power plan settings")
 
 def openCrystalDiskInfo():
-	exit
+	print("")
+	print("Opening CrystalDiskInfo")
+	os.startfile("CrystalDiskInfoPortable\CrystalDiskInfoPortable.exe")
+	print("Opened CrystalDiskInfo")
 
 def runSfc():
-	exit
+	print("")
+	print("Opening cmd")
+	pyautogui.hotkey("win", "r")
+	time.sleep(0.5)
+	pyautogui.typewrite("cmd")
+	pyautogui.hotkey("ctrl", "shift", "enter")
+	print("Opened cmd")
+	print("Type 'sfc /scannow'")
 
 def runMemtest():
-	exit
+	print("")
+	print("Opening Windows Memory Diagnostic")
+	pyautogui.press("win")
+	pyautogui.typewrite("Windows Memory Diagnostic")
+	time.sleep(waitTime)
+	pyautogui.press("enter")
+	print("Opened Windows Memory Diagnostic")
 
 def runFurmark():
-	exit
+	print("")
+	print("Opening Furmark")
+	os.startfile("FurMarkPortable\FurMark.exe")
+	print("Opened Furmark")
 
 def runCinebench():
-	exit
+	print("")
+	print("Opening Cinebench R23")
+	os.startfile("CinebenchPortable\Cinebench.exe")
+	print("Opened Cinebench R23")
 
 def openAnim():
-	exit
+	print("")
+	print("Opening regedit")
+	pyautogui.hotkey("win", "r")
+	time.sleep(0.5)
+	pyautogui.typewrite("regedit")
+	pyautogui.hotkey("ctrl", "shift", "enter")
+	print("Opened regedit")
+	print('Go to "Computer\HKEY_CURRENT_USER\Control Panel\Desktop"')
+	print("Find 'MenuShowDelay'")
+	print("set value to '200'")
+	print("restart computer")
+
+def openHWInfo():
+	print("")
+	print("Opening HWInfo64")
+	os.startfile("HardwareInfoPortable\HWiNFO64.exe")
+	print("Opened HWInfo 64")
+
 #Buttons
 DiskClean = Button(screen, text="Disk Clean", bg='white', command=openDiskClean, height=btnHeight, width=btnWidth)
 DiskClean.place(x=btnX, y=btnY)
@@ -73,6 +143,10 @@ cinebench.place(x=btnX, y=btnY + 100)
 
 animTimes = Button(screen, text="Animation", bg='white', command=openAnim, height=btnHeight, width=btnWidth)
 animTimes.place(x=btnX + 100, y=btnY + 100)
+
+hwInfo = Button(screen, text="HWInfo", bg='white', command=openHWInfo, height=btnHeight, width=btnWidth)
+hwInfo.place(x=btnX + 200, y=btnY + 100)
+
 
 #Refresh screen
 screen.mainloop()
