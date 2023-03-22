@@ -18,13 +18,14 @@ btnHeight = 2
 btnWidth = 10
 btnX = 75
 btnY = 75
-waitTime = 2
+waitTime = 2.5
 
 #Methods
 def openDiskClean():
 	print("")
 	print("Opening disk cleanup")
 	pyautogui.press("win")
+	time.sleep(waitTime)
 	pyautogui.typewrite("Disk Cleanup")
 	time.sleep(waitTime)
 	pyautogui.press("enter")
@@ -34,6 +35,7 @@ def openDefrag():
 	print("")
 	print("Opening defrag")
 	pyautogui.press("win")
+	time.sleep(waitTime)
 	pyautogui.typewrite("Defragment and Optimize Drives")
 	time.sleep(waitTime)
 	pyautogui.press("enter")
@@ -43,6 +45,7 @@ def openUpdate():
 	print("")
 	print("Opening Windows Update")
 	pyautogui.press("win")
+	time.sleep(waitTime)
 	pyautogui.typewrite("Windows Update")
 	time.sleep(waitTime)
 	pyautogui.press("enter")
@@ -52,6 +55,7 @@ def openPowerPlan():
 	print("")
 	print("Opening power plan settings")
 	pyautogui.press("win")
+	time.sleep(waitTime)
 	pyautogui.typewrite("Choose a power plan")
 	time.sleep(waitTime)
 	pyautogui.press("enter")
@@ -67,7 +71,7 @@ def runSfc():
 	print("")
 	print("Opening cmd")
 	pyautogui.hotkey("win", "r")
-	time.sleep(0.5)
+	time.sleep(waitTime)
 	pyautogui.typewrite("cmd")
 	pyautogui.hotkey("ctrl", "shift", "enter")
 	print("Opened cmd")
@@ -77,6 +81,7 @@ def runMemtest():
 	print("")
 	print("Opening Windows Memory Diagnostic")
 	pyautogui.press("win")
+	time.sleep(waitTime)
 	pyautogui.typewrite("Windows Memory Diagnostic")
 	time.sleep(waitTime)
 	pyautogui.press("enter")
@@ -98,7 +103,7 @@ def openAnim():
 	print("")
 	print("Opening regedit")
 	pyautogui.hotkey("win", "r")
-	time.sleep(0.5)
+	time.sleep(waitTime)
 	pyautogui.typewrite("regedit")
 	pyautogui.hotkey("ctrl", "shift", "enter")
 	print("Opened regedit")
