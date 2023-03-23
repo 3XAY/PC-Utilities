@@ -24,21 +24,13 @@ waitTime = 2.5
 def openDiskClean():
 	print("")
 	print("Opening disk cleanup")
-	pyautogui.press("win")
-	time.sleep(waitTime)
-	pyautogui.typewrite("Disk Cleanup")
-	time.sleep(waitTime)
-	pyautogui.press("enter")
+	os.startfile("C:\WINDOWS\system32\cleanmgr.exe")
 	print("Opened disk cleanup")
 
 def openDefrag():
 	print("")
 	print("Opening defrag")
-	pyautogui.press("win")
-	time.sleep(waitTime)
-	pyautogui.typewrite("Defragment and Optimize Drives")
-	time.sleep(waitTime)
-	pyautogui.press("enter")
+	os.startfile("C:\WINDOWS\system32\dfrgui.exe")
 	print("Opened defrag")
 
 def openUpdate():
@@ -70,21 +62,14 @@ def openCrystalDiskInfo():
 def runSfc():
 	print("")
 	print("Opening cmd")
-	pyautogui.hotkey("win", "r")
-	time.sleep(waitTime)
-	pyautogui.typewrite("cmd")
-	pyautogui.hotkey("ctrl", "shift", "enter")
+	os.startfile("C:\WINDOWS\system32\cmd.exe")
 	print("Opened cmd")
 	print("Type 'sfc /scannow'")
 
 def runMemtest():
 	print("")
 	print("Opening Windows Memory Diagnostic")
-	pyautogui.press("win")
-	time.sleep(waitTime)
-	pyautogui.typewrite("Windows Memory Diagnostic")
-	time.sleep(waitTime)
-	pyautogui.press("enter")
+	os.startfile("C:\WINDOWS\system32\MdSched.exe")
 	print("Opened Windows Memory Diagnostic")
 
 def runFurmark():
@@ -102,10 +87,7 @@ def runCinebench():
 def openAnim():
 	print("")
 	print("Opening regedit")
-	pyautogui.hotkey("win", "r")
-	time.sleep(waitTime)
-	pyautogui.typewrite("regedit")
-	pyautogui.hotkey("ctrl", "shift", "enter")
+	os.startfile("C:\WINDOWS\\regedit.exe")
 	print("Opened regedit")
 	print('Go to "Computer\HKEY_CURRENT_USER\Control Panel\Desktop"')
 	print("Find 'MenuShowDelay'")
