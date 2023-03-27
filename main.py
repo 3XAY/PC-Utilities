@@ -1,30 +1,19 @@
-#Import packages
-from tkinter import Label, Tk, Button #GUI
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'PCcleaningutilitygui.ui'
+#
+# Created by: PyQt5 UI code generator 5.15.4
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets #GUI
 from time import sleep #Delays
 from pyautogui import typewrite, press, hotkey #Macros
-from os import startfile #opening apps
+from os import startfile #opening app
 
-#Set Defaults
-btnHeight = 2
-btnWidth = 10
-btnX = 75
-btnY = 75
+
 waitTime = 2.5
-screenBgColor = "#141414"
-bgBtnColorInactive = "#0f0f0f"
-bgBtnColorActive = "#0d0d0d"
-BtnTextColorActive = "#c4c4c4"
-textColor = "white"
 
-# Initialize screen
-screen = Tk()
-screen.geometry("1000x400")
-screen.title("PC Cleaning Utility (Custom made)")
-screen.configure(background=screenBgColor)
 
-#Create text
-warning = Label(screen, text = "Created by 3XAY. This software is not responsible for any harm caused to any computers.", bg=screenBgColor, fg=textColor)
-warning.place(x=0, y=375)
 
 #Methods
 def openDiskClean():
@@ -115,48 +104,463 @@ def openProgramUninstaller():
 	print("Opened uninstaller\nUninstall unwanted apps")
 
 
-#Buttons
-DiskClean = Button(screen, text="Disk Clean", bg=bgBtnColorInactive, fg=textColor, command=openDiskClean, height=btnHeight, width=btnWidth, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-DiskClean.place(x=btnX, y=btnY)
+class Ui_screen(object):
+    def setupUi(self, screen):
+        screen.setObjectName("screen")
+        screen.setWindowModality(QtCore.Qt.NonModal)
+        screen.setEnabled(True)
+        screen.resize(625, 610)
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(31, 31, 31))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(31, 31, 31))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 128))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.PlaceholderText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(31, 31, 31))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(31, 31, 31))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 128))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.PlaceholderText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(31, 31, 31))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(31, 31, 31))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 128))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
+        screen.setPalette(palette)
+        screen.setAnimated(True)
+        self.centralwidget = QtWidgets.QWidget(screen)
+        self.centralwidget.setObjectName("centralwidget")
+        self.warning = QtWidgets.QLabel(self.centralwidget)
+        self.warning.setGeometry(QtCore.QRect(40, 570, 551, 16))
+        self.warning.setScaledContents(False)
+        self.warning.setAlignment(QtCore.Qt.AlignCenter)
+        self.warning.setObjectName("warning")
+        self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 10, 601, 551))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.btnGrid = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.btnGrid.setContentsMargins(0, 0, 0, 0)
+        self.btnGrid.setObjectName("btnGrid")
+        self.PowerPlanBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.PowerPlanBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.PowerPlanBtn.setObjectName("PowerPlanBtn")
+        self.btnGrid.addWidget(self.PowerPlanBtn, 1, 1, 1, 1)
+        self.CrystalDiskInfoBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.CrystalDiskInfoBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.CrystalDiskInfoBtn.setObjectName("CrystalDiskInfoBtn")
+        self.btnGrid.addWidget(self.CrystalDiskInfoBtn, 1, 2, 1, 1)
+        self.sfcBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.sfcBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.sfcBtn.setObjectName("sfcBtn")
+        self.btnGrid.addWidget(self.sfcBtn, 2, 0, 1, 1)
+        self.FurmarkBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.FurmarkBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.FurmarkBtn.setObjectName("FurmarkBtn")
+        self.btnGrid.addWidget(self.FurmarkBtn, 2, 2, 1, 1)
+        self.SysConfigBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.SysConfigBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.SysConfigBtn.setObjectName("SysConfigBtn")
+        self.btnGrid.addWidget(self.SysConfigBtn, 4, 0, 1, 1)
+        self.CinebenchBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.CinebenchBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.CinebenchBtn.setObjectName("CinebenchBtn")
+        self.btnGrid.addWidget(self.CinebenchBtn, 3, 0, 1, 1)
+        self.DefragBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.DefragBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.DefragBtn.setObjectName("DefragBtn")
+        self.btnGrid.addWidget(self.DefragBtn, 0, 1, 1, 1)
+        self.AnimationBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.AnimationBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.AnimationBtn.setObjectName("AnimationBtn")
+        self.btnGrid.addWidget(self.AnimationBtn, 3, 1, 1, 1)
+        self.UltPowerPlanBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.UltPowerPlanBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.UltPowerPlanBtn.setObjectName("UltPowerPlanBtn")
+        self.btnGrid.addWidget(self.UltPowerPlanBtn, 1, 0, 1, 1)
+        self.memtestBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.memtestBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.memtestBtn.setObjectName("memtestBtn")
+        self.btnGrid.addWidget(self.memtestBtn, 2, 1, 1, 1)
+        self.WindowsUpdateBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.WindowsUpdateBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.WindowsUpdateBtn.setObjectName("WindowsUpdateBtn")
+        self.btnGrid.addWidget(self.WindowsUpdateBtn, 0, 2, 1, 1)
+        self.HWInfoBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.HWInfoBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.HWInfoBtn.setObjectName("HWInfoBtn")
+        self.btnGrid.addWidget(self.HWInfoBtn, 3, 2, 1, 1)
+        self.DiskCleanBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 128))
+        brush.setStyle(QtCore.Qt.NoBrush)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.PlaceholderText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 128))
+        brush.setStyle(QtCore.Qt.NoBrush)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.PlaceholderText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(51, 51, 51))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 128))
+        brush.setStyle(QtCore.Qt.NoBrush)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
+        self.DiskCleanBtn.setPalette(palette)
+        self.DiskCleanBtn.setMouseTracking(False)
+        self.DiskCleanBtn.setAutoFillBackground(False)
+        self.DiskCleanBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.DiskCleanBtn.setCheckable(False)
+        self.DiskCleanBtn.setAutoDefault(False)
+        self.DiskCleanBtn.setDefault(False)
+        self.DiskCleanBtn.setFlat(False)
+        self.DiskCleanBtn.setObjectName("DiskCleanBtn")
+        self.btnGrid.addWidget(self.DiskCleanBtn, 0, 0, 1, 1)
+        self.UninstallAppsBtn = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.UninstallAppsBtn.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.UninstallAppsBtn.setObjectName("UninstallAppsBtn")
+        self.btnGrid.addWidget(self.UninstallAppsBtn, 4, 2, 1, 1)
+        self.StartupApps = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.StartupApps.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    background-color: #333333;\n"
+"    border-radius: 17px;\n"
+"    padding: 10px 20px;\n"
+"    font-size: 11px;\n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2e2e2e;\n"
+"}\n"
+"")
+        self.StartupApps.setObjectName("StartupApps")
+        self.btnGrid.addWidget(self.StartupApps, 4, 1, 1, 1)
+        screen.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(screen)
+        self.statusbar.setObjectName("statusbar")
+        screen.setStatusBar(self.statusbar)
 
-Defrag = Button(screen, text="Defrag", bg=bgBtnColorInactive, fg=textColor, command=openDefrag, height=btnHeight, width=btnWidth, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-Defrag.place(x=btnX + 100, y=btnY)
+        self.retranslateUi(screen)
+        self.DiskCleanBtn.clicked.connect(openDiskClean)
+        self.DefragBtn.clicked.connect(openDefrag)
+        self.WindowsUpdateBtn.clicked.connect(openUpdate)
+        self.UltPowerPlanBtn.clicked.connect(activateUltPower)
+        self.PowerPlanBtn.clicked.connect(openPowerPlan)
+        self.CrystalDiskInfoBtn.clicked.connect(openCrystalDiskInfo)
+        self.sfcBtn.clicked.connect(runSfc)
+        self.memtestBtn.clicked.connect(runMemtest)
+        self.FurmarkBtn.clicked.connect(runFurmark)
+        self.CinebenchBtn.clicked.connect(runCinebench)
+        self.AnimationBtn.clicked.connect(openAnim)
+        self.HWInfoBtn.clicked.connect(openHWInfo)
+        self.SysConfigBtn.clicked.connect(openMsConfig)
+        self.StartupApps.clicked.connect(openStartupApps)
+        self.UninstallAppsBtn.clicked.connect(openProgramUninstaller)
+        QtCore.QMetaObject.connectSlotsByName(screen)
+        screen.setTabOrder(self.DiskCleanBtn, self.DefragBtn)
+        screen.setTabOrder(self.DefragBtn, self.WindowsUpdateBtn)
+        screen.setTabOrder(self.WindowsUpdateBtn, self.UltPowerPlanBtn)
+        screen.setTabOrder(self.UltPowerPlanBtn, self.PowerPlanBtn)
+        screen.setTabOrder(self.PowerPlanBtn, self.CrystalDiskInfoBtn)
+        screen.setTabOrder(self.CrystalDiskInfoBtn, self.sfcBtn)
+        screen.setTabOrder(self.sfcBtn, self.memtestBtn)
+        screen.setTabOrder(self.memtestBtn, self.FurmarkBtn)
+        screen.setTabOrder(self.FurmarkBtn, self.CinebenchBtn)
+        screen.setTabOrder(self.CinebenchBtn, self.AnimationBtn)
+        screen.setTabOrder(self.AnimationBtn, self.HWInfoBtn)
+        screen.setTabOrder(self.HWInfoBtn, self.SysConfigBtn)
 
-WindowsUpdate = Button(screen, text="Windows Update", bg=bgBtnColorInactive, fg=textColor, command=openUpdate, height=btnHeight, width=btnWidth + 3, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-WindowsUpdate.place(x=btnX + 200, y=btnY)
+    def retranslateUi(self, screen):
+        _translate = QtCore.QCoreApplication.translate
+        screen.setWindowTitle(_translate("screen", "PC Cleaning Utility (Custom made)"))
+        self.warning.setText(_translate("screen", "Created by 3XAY. This software is not responsible for any harm caused to any computers."))
+        self.PowerPlanBtn.setText(_translate("screen", "Power Plan"))
+        self.CrystalDiskInfoBtn.setText(_translate("screen", "CrystalDiskInfo"))
+        self.sfcBtn.setText(_translate("screen", "sfc"))
+        self.FurmarkBtn.setText(_translate("screen", "FurMark"))
+        self.SysConfigBtn.setText(_translate("screen", "Sys config"))
+        self.CinebenchBtn.setText(_translate("screen", "Cinebench"))
+        self.DefragBtn.setText(_translate("screen", "Defrag"))
+        self.AnimationBtn.setText(_translate("screen", "Animation"))
+        self.UltPowerPlanBtn.setText(_translate("screen", "Ultimate Power Plan"))
+        self.memtestBtn.setText(_translate("screen", "memtest"))
+        self.WindowsUpdateBtn.setText(_translate("screen", "Windows Update"))
+        self.HWInfoBtn.setText(_translate("screen", "HWInfo"))
+        self.DiskCleanBtn.setText(_translate("screen", "Disk Clean"))
+        self.UninstallAppsBtn.setText(_translate("screen", "Uninstall apps"))
+        self.StartupApps.setText(_translate("screen", "Startup Apps"))
 
-UltPower = Button(screen, text="Ultimate Power Plan", bg=bgBtnColorInactive, fg=textColor, command=activateUltPower, height=btnHeight, width=btnWidth + 5, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-UltPower.place(x=btnX + 325, y=btnY)
 
-PowerPlan = Button(screen, text="Power Plan", bg=bgBtnColorInactive, fg=textColor, command=openPowerPlan, height=btnHeight, width=btnWidth, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-PowerPlan.place(x=btnX + 475, y=btnY)
-
-chkStorage = Button(screen, text="CrystalDiskInfo", bg=bgBtnColorInactive, fg=textColor, command=openCrystalDiskInfo, height=btnHeight, width=btnWidth + 3, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-chkStorage.place(x=btnX + 575, y=btnY)
-
-sfc = Button(screen, text="sfc", bg=bgBtnColorInactive, fg=textColor, command=runSfc, height=btnHeight, width=btnWidth - 3, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-sfc.place(x=btnX + 700, y=btnY)
-
-memtest = Button(screen, text="memtest", bg=bgBtnColorInactive, fg=textColor, command=runMemtest, height=btnHeight, width=btnWidth, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-memtest.place(x=btnX + 775, y=btnY)
-
-furmark = Button(screen, text="Furmark", bg=bgBtnColorInactive, fg=textColor, command=runFurmark, height=btnHeight, width=btnWidth, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-furmark.place(x=btnX, y=btnY + 100)
-
-cinebench = Button(screen, text="Cinebench", bg=bgBtnColorInactive, fg=textColor, command=runCinebench, height=btnHeight, width=btnWidth, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-cinebench.place(x=btnX + 100, y=btnY + 100)
-
-animTimes = Button(screen, text="Animation",bg=bgBtnColorInactive, fg=textColor, command=openAnim, height=btnHeight, width=btnWidth, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-animTimes.place(x=btnX + 200, y=btnY + 100)
-
-hwInfo = Button(screen, text="HWInfo", bg=bgBtnColorInactive, fg=textColor, command=openHWInfo, height=btnHeight, width=btnWidth, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-hwInfo.place(x=btnX + 300, y=btnY + 100)
-
-msConfig = Button(screen, text="Sys Config", bg=bgBtnColorInactive, fg=textColor, command=openMsConfig, height=btnHeight, width=btnWidth, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-msConfig.place(x=btnX + 400, y=btnY + 100)
-
-uninstaller = Button(screen, text="Uninstall apps", bg=bgBtnColorInactive, fg=textColor, command=openProgramUninstaller, height=btnHeight, width=btnWidth, borderwidth=0, activebackground=bgBtnColorActive, activeforeground=BtnTextColorActive)
-uninstaller.place(x=btnX + 500, y=btnY + 100)
-
-#Refresh screen
-screen.mainloop()
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    screen = QtWidgets.QMainWindow()
+    ui = Ui_screen()
+    ui.setupUi(screen)
+    screen.show()
+    sys.exit(app.exec_())

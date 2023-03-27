@@ -349,5 +349,6 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# Exe Files
+# Files (added by 3XAY)
 *.exe
+*.ui
