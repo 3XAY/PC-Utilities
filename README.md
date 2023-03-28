@@ -7,7 +7,7 @@ This is a fully python-based application. This is meant to be fully portable, as
 
 ## Required files
 
-As of now, you only need Cinebench R23, FurMark, HWInfo, and CrystalDiskInfo.
+As of now, you only need Cinebench R23, FurMark, HWInfo, CrystalDiskInfo, and CrystalDiskMark.
 
 Cinebench can be obtained by downloading from the Microsoft Store and extracting the working directory (bin).
 
@@ -15,7 +15,9 @@ FurMark can be obtained by going to InstallationDirectory==>Geeks3D==>Benchmarks
 
 HWInfo can be obtained from the official website.
 
-CrystalDiskInfo can be obtained from https://portableapps.com/
+CrystalDiskInfo can be obtained from https://portableapps.com/.
+
+CrystalDiskMark can be obtained from https://portableapps.com.
 
 
 ## File structure
@@ -31,6 +33,9 @@ Ensure that the application inside is named **'HWiNFO64.exe'**
 
 CrystalDiskInfo must be placed in a folder named **'CrystalDiskInfoPortable'**.
 Ensure that the application inside is named **'CrystalDiskInfoPortable.exe'**
+
+CrystalDiskMark must be placed in a folder named **'CrystalDiskMarkPortable'**
+Ensure that the application inside is named **'CrystalDiskMark.exe'**
 
 Below is an example of the file structure:
 ![image](https://user-images.githubusercontent.com/69061313/228059390-7e884ac3-54c3-411d-b53d-63720d3fcf5c.png)
