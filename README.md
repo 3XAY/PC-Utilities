@@ -51,4 +51,4 @@ Are you confused about the purpose of some buttons? Check out the [wiki](https:/
 Any questions? Create a [discussion](https://github.com/3XAY/PC-Utilities/discussions)!
 
 ## Warning
-I, 3XAY am not responsible for any harm caused by this software. By using this software, you are agreeing to this warning. You should read the code to understand what is happening when you click the buttons. This software currently only gives you steps and opens the required applications to complete those steps. Failure to properly follow those steps could result in harm caused to your computer.
+I, 3XAY, am not responsible for any harm caused by this software. By using this software, you are agreeing to this warning. You should read the code to understand what is happening when you click the buttons. This software currently only gives you steps and opens the required applications to complete those steps. Failure to properly follow those steps could result in harm caused to your computer.
