@@ -4,6 +4,7 @@
 
 This is a fully python-based application. This is meant to be fully portable, as long as you have a few portable apps in the same folder as this application. This can be used to do regular maintenance on Windows 10/11 PCs and benchmark them. This software has been tested on Windows 11 and a fresh install of Windows 10.
 The purpose of this app is to allow you to open apps / menus required for maintainance and benchmarking easily. __It's an app-launcher for people who want to maintain their Windows machines easily.__
+![a screenshot of the application](screenshot.png)
 
 
 ## Required files
