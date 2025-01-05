@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'PC-UtilitiesGUI.ui'
 #
-# Created by: PyQt5 UI code generator 5.15.4
+# Created by: PyQt5 UI code generator 5.15.11
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets #GUI
+from PyQt5 import QtCore, QtGui, QtWidgets
 from os import startfile, system #opening apps / running commands
+import winreg, subprocess
 
 #Methods
 def openDiskClean():
@@ -36,8 +37,12 @@ def openPowerPlan():
 
 def openCrystalDiskInfo():
 	print("\nOpening CrystalDiskInfo")
-	startfile("CrystalDiskInfoPortable\CrystalDiskInfoPortable.exe")
-	print("Opened CrystalDiskInfo\nCheck storage health")
+	try:
+		startfile("CrystalDiskInfoPortable\CrystalDiskInfoPortable.exe")
+		print("Opened CrystalDiskInfo\nCheck storage health")
+	except:
+		print("ERROR: Couldn't open CrystalDiskInfo")
+		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
 
 def runSfc():
 	print("\nRunning sfc (this may take some time)")
@@ -51,28 +56,56 @@ def runMemtest():
 
 def runFurmark():
 	print("\nOpening Furmark")
-	startfile("FurMarkPortable\FurMark.exe")
-	print("Opened Furmark\nRun the highest resolution benchmark possible")
+	try:
+		startfile("FurMarkPortable\FurMark.exe")
+		print("Opened Furmark\nRun the highest resolution benchmark possible")
+	except:
+		print("ERROR: Couldn't open Furmark")
+		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
+	
+	
 
 def runCinebench():
-	print("\nOpening Cinebench R23")
-	startfile("CinebenchPortable\Cinebench.exe")
-	print("Opened Cinebench R23\nRun benchmarks")
+	print("\nOpening Cinebench")
+	try:
+		startfile("CinebenchPortable\Cinebench.exe")
+		print("Opened Cinebench R23\nRun benchmarks")
+	except:
+		print("ERROR: Couldn't open Cinebench")
+		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
+	
 
 def openAnim():
-	print("\nOpening regedit")
-	startfile("C:\WINDOWS\\regedit.exe")
-	print("Opened regedit\n'Go to Computer\HKEY_CURRENT_USER\Control Panel\Desktop'\nFind 'MenuShowDelay\nSet value to '200'\nRestart computer")
+	print("\nOpening registry...")
+	try:
+		key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Control Panel\Desktop", 0, winreg.KEY_ALL_ACCESS)
+		print("Currently set to: " + str(winreg.QueryValueEx(key, "MenuShowDelay")))
+		print("Changing value to 200...")
+		try:
+			winreg.SetValueEx(key, "MenuShowDelay", 0, winreg.REG_SZ, "200")
+			winreg.CloseKey(key)
+			print("Animation delay is set to 200ms")
+		except:
+			print("ERROR: Unable to write to registry, try running in Administrator mode")
+	except:
+		print("ERROR: Unable to read current value, try running in Administrator mode")
+	print("You can manually modify the key at Computer/HKEY_CURRENT_USER/Control Panel/Desktop and change the MenuShowDelay value in milliseconds")
+	print("Don't forget to restart the computer for the changes to take effect")
 
 def openHWInfo():
 	print("\nOpening HWInfo64")
-	startfile("HardwareInfoPortable\HWiNFO64.exe")
-	print("Opened HWInfo 64\nCheck any hardware stats")
+	try:
+		startfile("HardwareInfoPortable\HWiNFO64.exe")
+		print("Opened HWInfo 64\nCheck any hardware stats")
+	except:
+		print("ERROR: Couldn't open HWInfo64")
+		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
+	
 
 def	openStartupApps():
 	print("\nOpening Task Manager")
-	startfile("C:\WINDOWS\system32\Taskmgr.exe")
-	print("Opened task manager\nGo to startup tab and disable unwanted apps")
+	subprocess.run(["powershell", "taskmgr /startup"], shell=True)
+	print("Opened startup apps tab in Task Manager")
 
 def openMsConfig():
 	print("\nOpening System Configuration")
@@ -80,14 +113,18 @@ def openMsConfig():
 	print("Opened System Configuration\nEnsure 'Normal Startup' is selected\nSwitch to 'Boot' tab\nRemove any unwanted OS'")
 
 def openProgramUninstaller():
-	print("\nOpening Uninstaller")
-	startfile("C:\Windows\System32\\appwiz.cpl")
-	print("Opened Uninstaller\nUninstall unwanted apps")
+	print("\nOpening Installed Apps")
+	subprocess.run(["powershell", "start ms-settings:appsfeatures-app"], shell=True)
+	print("Opened Installed Apps\nUninstall apps from here")
 
 def openCrystalDiskMark():
-    print("\nOpening CrystalDiskMark")
-    startfile("CrystalDiskMarkPortable\CrystalDiskMarkPortable.exe")
-    print("Opened CrystalDiskMark\nBenchmark Storage Devices")
+	print("\nOpening CrystalDiskMark")
+	try:
+		startfile("CrystalDiskMarkPortable\CrystalDiskMarkPortable.exe")
+		print("Opened CrystalDiskMark\nBenchmark Storage Devices")
+	except:
+		print("ERROR: Couldn't open CrystalDiskMark")
+		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
 
 def	openTaskManager():
 	print("\nOpening Task Manager")
@@ -989,7 +1026,7 @@ class Ui_screen(object):
             system(self.commandTextbox.text())
 
         self.retranslateUi(screen)
-        self.tabWidget.setCurrentIndex(4)
+        self.tabWidget.setCurrentIndex(0)
         self.DiskCleanBtn_2.clicked.connect(openDiskClean)
         self.DefragBtn_2.clicked.connect(openDefrag)
         self.WindowsUpdateBtn_2.clicked.connect(openUpdate)
