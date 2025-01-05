@@ -3,6 +3,8 @@
 # PC Utilities
 
 This is a fully python-based application. This is meant to be fully portable, as long as you have a few portable apps in the same folder as this application. This can be used to do regular maintenance on Windows 10/11 PCs and benchmark them. This software has been tested on Windows 11 and a fresh install of Windows 10.
+The purpose of this app is to allow you to open apps / menus required for maintainance and benchmarking easily. __It's an app-launcher for people who want to maintain their Windows machines easily.__
+![a screenshot of the application](screenshot.png)
 
 
 ## Required files
@@ -42,11 +44,12 @@ Below is an example of the file structure:
 
 
 ## Helpful tips
-Make sure to run the application with administrator privileges. This will allow everything to work properly.
-If you are unsure on how to do something, **do not** attempt to do it.
-The application can be slow to launch on some computers, be patient.
-Some buttons may take some time to actually open up an application (especially Cinebench), be patient.
-Any questions? Create a discussion at https://github.com/3XAY/PC-Utilities/discussions
+Make sure to run the application with administrator privileges. This will allow everything to work properly. <br>
+If you are unsure on how to do something, **do not** attempt to do it. <br>
+The application can be slow to launch on some computers, be patient. <br>
+Some buttons may take some time to actually open up an application (especially Cinebench), be patient. <br>
+Are you confused about the purpose of some buttons? Check out the [wiki](https://github.com/3XAY/PC-Utilities/wiki)! <br>
+Any questions? Create a [discussion](https://github.com/3XAY/PC-Utilities/discussions)!
 
 ## Warning
-I, 3XAY am not responsible for any harm caused by this software. By using this software, you are agreeing to this warning. You should read the code to understand what is happening when you click the buttons. This software currently only gives you steps and opens the required applications to complete those steps. Failure to properly follow those steps could result in harm caused to your computer.
+I, 3XAY, am not responsible for any harm caused by this software. By using this software, you are agreeing to this warning. You should read the code to understand what is happening when you click the buttons. This software currently only gives you steps and opens the required applications to complete those steps. Failure to properly follow those steps could result in harm caused to your computer.
