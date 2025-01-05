@@ -6,6 +6,8 @@ This is a fully python-based application. This is meant to be fully portable, as
 The purpose of this app is to allow you to open apps / menus required for maintainance and benchmarking easily. __It's an app-launcher for people who want to maintain their Windows machines easily.__
 ![a screenshot of the application](screenshot.png)
 
+[Demo link](https://cloud-eosrtjuvn-hack-club-bot.vercel.app/0demov1-5.mp4)
+
 
 ## Required files
 
