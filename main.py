@@ -57,7 +57,7 @@ def runMemtest():
 def runFurmark():
 	print("\nOpening Furmark")
 	try:
-		startfile("FurMarkPortable\FurMark.exe")
+		startfile("FurMarkPortable\FurMark2.exe")
 		print("Opened Furmark\nRun the highest resolution benchmark possible")
 	except:
 		print("ERROR: Couldn't open Furmark")
@@ -69,7 +69,7 @@ def runCinebench():
 	print("\nOpening Cinebench")
 	try:
 		startfile("CinebenchPortable\Cinebench.exe")
-		print("Opened Cinebench R23\nRun benchmarks")
+		print("Opened Cinebench\nRun benchmarks")
 	except:
 		print("ERROR: Couldn't open Cinebench")
 		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
