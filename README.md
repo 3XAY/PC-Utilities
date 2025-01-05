@@ -9,7 +9,7 @@ The purpose of this app is to allow you to open apps / menus required for mainta
 
 ## Required files
 
-As of now, you only need Cinebench R23, FurMark, HWInfo, CrystalDiskInfo, and CrystalDiskMark.
+As of now, you only need Cinebench, FurMark, HWInfo, CrystalDiskInfo, and CrystalDiskMark.
 
 Cinebench can be obtained by downloading it from [the website](https://www.maxon.net/en/downloads/cinebench-2024-downloads?srsltid=AfmBOopoX9mBynlP9FzDjcrhMgEaBfg7Z1weI43GJGz_idve4LX2x146).
 <br>Extract the .ZIP file, you'll need the extracted folder later.
