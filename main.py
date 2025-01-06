@@ -38,7 +38,7 @@ def openPowerPlan():
 def openCrystalDiskInfo():
 	print("\nOpening CrystalDiskInfo")
 	try:
-		startfile("CrystalDiskInfoPortable\CrystalDiskInfoPortable.exe")
+		startfile("CrystalDiskInfoPortable\DiskInfo64.exe")
 		print("Opened CrystalDiskInfo\nCheck storage health")
 	except:
 		print("ERROR: Couldn't open CrystalDiskInfo")
@@ -57,7 +57,7 @@ def runMemtest():
 def runFurmark():
 	print("\nOpening Furmark")
 	try:
-		startfile("FurMarkPortable\FurMark2.exe")
+		startfile("FurMarkPortable\FurMark_GUI.exe")
 		print("Opened Furmark\nRun the highest resolution benchmark possible")
 	except:
 		print("ERROR: Couldn't open Furmark")
@@ -120,7 +120,7 @@ def openProgramUninstaller():
 def openCrystalDiskMark():
 	print("\nOpening CrystalDiskMark")
 	try:
-		startfile("CrystalDiskMarkPortable\CrystalDiskMarkPortable.exe")
+		startfile("CrystalDiskMarkPortable\DiskMark64.exe")
 		print("Opened CrystalDiskMark\nBenchmark Storage Devices")
 	except:
 		print("ERROR: Couldn't open CrystalDiskMark")

@@ -9,13 +9,13 @@
 - QT Designer (Included with PyQt5)
 
 
-### How to compile the `.py` file to an executable
+### How to compile a `.py` file to an executable
 1. Run: `auto-py-to-exe`
-2. Select the `main.py` file in the Script location
+2. Select the correct `.py` file in the Script location
 3. Choose one file
 4. Choose console based
 5. In advanced, enable the following:
-    - --name = `PC-Utilities`
+    - --name = `Insert file name here`
     - --clean = `Enable`
     - Windows specific options ==> --uac-admin = `Enable`
 6. Click `Convert .py to .exe`
