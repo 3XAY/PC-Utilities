@@ -1,35 +1,46 @@
 #Installs PC-Utilities and the required software
 import subprocess #Allows me to run commands
 import sys #For errors
-import time
+from os import path #See if file/path exists
 
 #Installer method, tries to run a command in powershell, throws an error and gracefully stops on failure
 def installStep(message, command, error):
 	print(message)
 	try:
-		subprocess.run(["powershell", command], shell=True, check=True)
+		subprocess.run(["powershell", command], shell=False, check=True)
 		print("DONE")
 	except:
 		sys.exit(error)
 
+#Header
 print("This program will start installing PC-Utilities and the required software")
 print("It may take a while, please be patient")
+
+#PC-Utilities setup
+if path.exists('PC-Utilities'): #Make sure folder isn't already installed
+	print("PC-Utilities folder already exists, please delete it before installing again\nPress any key to quit...")
+	blank = input()
+	sys.exit()
 installStep("Creating PC-Utilities folder...", "md PC-Utilities", "ERROR: Unable to create the PC-Utilities folder, make sure there isn't an existing folder with the same name")
 installStep("Downloading the PC-Utilities app...", "curl https://github.com/3XAY/PC-Utilities/releases/latest/download/PC-Utilities.exe -o PC-Utilities/PC-Utilities.exe", "ERROR: Unable to download the PC-Utilities app, check your internet connection")
-installStep("Downloading Cinebench... (This may take a while...)", "curl https://archive.org/download/cinebench_201907/CINEBENCH%20R23.zip -o PC-Utilities/Cinebench.zip", "ERROR: Unable to download Cinebench, check your internet connection") #Uses Internet Archive link by Maxon
-installStep("Extracting Cinebench...", "Expand-Archive -Force PC-Utilities/Cinebench.zip PC-Utilities/", "ERROR: Unable to extract Cinebench")
-time.sleep(1) #Prevents access error
-installStep("Renaming folder...", "MOVE 'PC-Utilities/CINEBENCH R23' 'PC-Utilities/CinebenchPortable'", "ERROR: Unable to rename CINEBENCH R23 folder")
+
+#Cinebench
+installStep("Downloading Cinebench... (This may take a while...)", "curl.exe -L -H 'Referer: https://www.maxon.net/en/downloads/cinebench-2024-downloads?srsltid=AfmBOoqLm_qswxE1fhcxoQflvImG2Vk98d12JYq3e2n3xoIDYX5S6764' https://mx-app-blob-prod.maxon.net/mx-package-production/website/windows/maxon/cinebench/Cinebench2024_win_x86_64.zip -o PC-Utilities/Cinebench.zip", "ERROR: Unable to download Cinebench, check your internet connection") #Uses Internet Archive link by Maxon
+installStep("Extracting Cinebench...", "Expand-Archive -Force PC-Utilities/Cinebench.zip PC-Utilities/CinebenchPortable", "ERROR: Unable to extract Cinebench")
+
+#Furmark
 installStep("Downloading Furmark...", "curl https://geeks3d.com/dl/get/771 -o PC-Utilities/Furmark.zip", "ERROR: Unable to download Furmark, check your internet connection")
-installStep("Extracting Furmark...", "Expand-Archive -Force PC-Utilities/Furmark.zip PC-Utilities/", "ERROR: Unable to extract Furmark")
-time.sleep(1) #Prevents access error
-installStep("Renaming folder...", "MOVE 'PC-Utilities/FurMark_win64' 'PC-Utilities/FurMarkPortable'", "ERROR: Unable to rename FurMark_win64 folder")
+installStep("Extracting Furmark...", "Expand-Archive -Force PC-Utilities/Furmark.zip PC-Utilities/FurMarkPortable", "ERROR: Unable to extract Furmark")
+
+#HWInfo
 installStep("Downloading HWInfo...", "curl https://www.sac.sk/download/utildiag/hwi_816.zip -o PC-Utilities/HWInfo.zip", "ERROR: Unable to download HWInfo, check your internet connection") #Downloads from Slovakia
 installStep("Extracting HWInfo...", "Expand-Archive -Force PC-Utilities/HWInfo.zip PC-Utilities/HardwareInfoPortable", "ERROR: Unable to extract HWInfo")
-time.sleep(1) #Prevents access error
+
+#CrystalDiskInfo
 installStep("Downloading CrystalDiskInfo", "curl.exe -L https://sourceforge.net/projects/crystaldiskinfo/files/9.5.0/CrystalDiskInfo9_5_0.zip/download -o PC-Utilities/CDI.zip", "ERROR: Unable to download CrystalDiskInfo, check your internet connection")
 installStep("Extracting CrystalDiskInfo...", "Expand-Archive -Force PC-Utilities/CDI.zip PC-Utilities/CrystalDiskInfoPortable", "ERROR: Unable to extract CrystalDiskInfo")
-time.sleep(1) #Prevents access error
+
+#CrystalDiskMark
 installStep("Downloading CrystalDiskMark", "curl.exe -L https://sourceforge.net/projects/crystaldiskmark/files/8.0.6/CrystalDiskMark8_0_6.zip/download -o PC-Utilities/CDM.zip", "ERROR: Unable to download CrystalDiskMark, check your internet connection")
 installStep("Extracting CrystalDiskMark...", "Expand-Archive -Force PC-Utilities/CDM.zip PC-Utilities/CrystalDiskMarkPortable", "ERROR: Unable to extract CrystalDiskMark")
 

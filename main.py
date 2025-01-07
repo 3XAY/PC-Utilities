@@ -57,7 +57,7 @@ def runMemtest():
 def runFurmark():
 	print("\nOpening Furmark")
 	try:
-		startfile("FurMarkPortable\FurMark_GUI.exe")
+		startfile("FurMarkPortable\FurMark_win64\FurMark_GUI.exe")
 		print("Opened Furmark\nRun the highest resolution benchmark possible")
 	except:
 		print("ERROR: Couldn't open Furmark")
