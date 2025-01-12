@@ -8,7 +8,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets #UI
 import winreg #Reg edit 
 import subprocess #Running commands, opening apps, basically everything
-import platform, psutil, cpuinfo, GPUtil, win32com.client #System info
+import wmi #System info
 from multiprocessing import freeze_support #For making auto-py-to-exe work with cpuinfo
 
 #Methods
@@ -141,75 +141,44 @@ def openRestorePoint():
 #Get system specs
 sysSpecsText = "Loading..."
 
-#Get CPU information
+#Create computer object
+c = wmi.WMI()
 
-cpuManufacturer = platform.processor().lower()
-cpuLogicProcessors = str(psutil.cpu_count(logical=True))
-cpuCoreCount = str(psutil.cpu_count(logical=False))
-cpuFreq = str(psutil.cpu_freq(percpu=False)[-1])
-cpuModel = str(cpuinfo.get_cpu_info()['brand_raw'])
-
-#Make CPU manufacturer name easier to read
-if cpuManufacturer[:5] == "intel":
-	cpuManufacturer = "Intel"
-elif cpuManufacturer[:3] == "amd":
-	cpuManufacturer = "AMD"
-else:
-	cpuManufacturer = "Unknown"
-
+#Get CPU info
 sysSpecsText = "CPU Information:"
-sysSpecsText += "\nManufacturer: " + cpuManufacturer
-sysSpecsText += "\nModel: " + cpuModel
-sysSpecsText += "\nCores: " + cpuCoreCount
-sysSpecsText += "\nLogical processors: " + cpuLogicProcessors
-sysSpecsText += "\nBase clock: " + cpuFreq + "MHz\n"
+for cpu in c.Win32_Processor():
+	sysSpecsText += "\nModel: " + str(cpu.Name)
+	sysSpecsText += "\nCores: " + str(cpu.NumberOfCores)
+	sysSpecsText += "\nThreads: " + str(cpu.ThreadCount)
+	sysSpecsText += "\nBase clock: " + str(cpu.CurrentClockSpeed) + "MHz\n"
+
 
 #Get GPU information
-gpus = GPUtil.getGPUs()
-gpuList = []
-
-for gpu in gpus:
-	gpuName = gpu.name
-	gpuManufacturer = ""
-	if gpuName[:6].lower() == "nvidia":
-		gpuManufacturer = "NVIDIA"
-	elif gpuName[:3].lower() == "amd":
-		gpuManufacturer = "AMD"
-	elif gpuName[:5].lower() == "intel":
-		gpuManufacturer = "Intel"
-	gpuVRAM = gpu.memoryTotal
-	gpuList.append(gpuManufacturer)
-	gpuList.append(gpuName)
-	gpuList.append(gpuVRAM)
-
 sysSpecsText += "\nGPU information:"
-#Loop through list & print out info
-gpuListLength = len(gpuList)
-i = 0
-
-while i < gpuListLength:
-	sysSpecsText += "\nManufacturer: " + str(gpuList[i])
-	i+=1
-	sysSpecsText += "\nModel: " + str(gpuList[i])
-	i+=1
-	sysSpecsText += "\nVRAM: " + str(gpuList[i]) + "MB"
-	i+=1
+for gpu in c.win32_VideoController():
+	sysSpecsText += "\nModel: " + str(gpu.Name)
+	sysSpecsText += "\nStatus: " + str(gpu.Status)
 
 #Get RAM info
-totalRam = str(round(psutil.virtual_memory().total/(1024.**3), 2)) #convert bytes to gigabytes (to the nearest hundredth)
-strComputer = "."
-objWMIService = win32com.client.Dispatch("WbemScripting.SWbemLocator")
-objSWbemServices = objWMIService.ConnectServer(strComputer,"root\cimv2")
-colItems = objSWbemServices.ExecQuery("SELECT * FROM Win32_PhysicalMemory")
-ramSlots = str(len(colItems))
+sysSpecsText += "\n\nRAM information:"
+totalRam = 0
+slots = 0
+for ram in c.Win32_PhysicalMemory():
+	totalRam += int(ram.capacity)
+	speed = ram.ConfiguredClockSpeed
+	manu = ram.Manufacturer
+	partNumber = ram.PartNumber
+	slots += 1
 
-sysSpecsText += "\n\nRAM Info:"
-sysSpecsText += "\nTotal memory installed: " + totalRam + "GB"
-sysSpecsText += "\nSlots being used: " + ramSlots
+totalRam /= (1024**3) #Bytes to GB
+sysSpecsText += "\nTotal RAM: " + str(totalRam) + "GB"
+sysSpecsText += "\nSpeed: " + str(speed) + "MHz"
+sysSpecsText += "\nManufacturer: " + str(manu)
+sysSpecsText += "\nPart Number: " + str(partNumber)
+sysSpecsText += "\nSlots being used: " + str(slots)
 
 #TODO: Add storage info
-#TODO: Add frequency information for RAM
-#TODO: Swap as much stuff as possible to WMI maybe? (may help reduce file size)
+#TODO: Add network info
 
 #runCommand method is on line 1053
 
