@@ -32,6 +32,8 @@
 1. Type `pyuic5 -x PC-UtilitiesGUI.ui -o output.py`
 2. Copy the methods from the `main.py` file into the the `output.py` file
 3. Copy the `runCommand` method from `main.py` and the following code block (`self.retranslateUi(screen)` to `QtCore.QMetaObject.connectSlotsByName(screen)`) and replace it in the same location in `output.py`. A tool like [diffchecker](https://www.diffchecker.com/text-compare/) can help.
-4. Copy everything from `output.py` to the `main.py` file
-5. Delete the warning at the top
-6. Delete `output.py`
+4. Change the `self.sysSpecsLabel.setText(_translate("screen", "Loading...")` line near the bottom to replace the `"Loading..."` with `sysSpecsText`
+5. Add the `freeze_support()` line to the very bottom (`if __name__ == "__main+__":`)
+5. Copy everything from `output.py` to the `main.py` file
+7. Delete the warning at the top
+8. Delete `output.py`

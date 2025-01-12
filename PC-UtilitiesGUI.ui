@@ -311,7 +311,7 @@ QTabBar::tab:!selected {
 </string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
     <property name="documentMode">
      <bool>true</bool>
@@ -844,7 +844,7 @@ QPushButton:pressed {
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>570</y>
+        <y>550</y>
         <width>551</width>
         <height>16</height>
        </rect>
@@ -955,7 +955,7 @@ QPushButton:pressed {
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>570</y>
+        <y>550</y>
         <width>551</width>
         <height>16</height>
        </rect>
@@ -1088,7 +1088,7 @@ QPushButton:pressed {
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>570</y>
+        <y>550</y>
         <width>551</width>
         <height>16</height>
        </rect>
@@ -1121,7 +1121,7 @@ border: none;
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>570</y>
+        <y>550</y>
         <width>551</width>
         <height>16</height>
        </rect>
@@ -1456,6 +1456,62 @@ QPushButton:pressed {
         </widget>
        </item>
       </layout>
+     </widget>
+     <zorder>gridLayoutWidget_5</zorder>
+     <zorder>warning_5</zorder>
+    </widget>
+    <widget class="QWidget" name="specs">
+     <property name="styleSheet">
+      <string notr="true">background-color: #1f1f1f;
+border: none;
+</string>
+     </property>
+     <attribute name="title">
+      <string>Specs</string>
+     </attribute>
+     <widget class="QLabel" name="sysSpecsLabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>581</width>
+        <height>511</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;</string>
+      </property>
+      <property name="text">
+       <string>Loading...</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="warning_6">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>550</y>
+        <width>551</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+</string>
+      </property>
+      <property name="text">
+       <string>Created by 3XAY. This software is not responsible for any harm caused to any computers.</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="cmdTab">
@@ -1940,6 +1996,29 @@ QPushButton:pressed {
       </property>
       <property name="placeholderText">
        <string>Enter a Windows command here...</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="warning_7">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>550</y>
+        <width>551</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+</string>
+      </property>
+      <property name="text">
+       <string>Created by 3XAY. This software is not responsible for any harm caused to any computers.</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>

@@ -5,40 +5,42 @@
 # Created by: PyQt5 UI code generator 5.15.11
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-from os import startfile, system #opening apps / running commands
-import winreg, subprocess
+from PyQt5 import QtCore, QtGui, QtWidgets #UI
+import winreg #Reg edit 
+import subprocess #Running commands, opening apps, basically everything
+import platform, psutil, cpuinfo, GPUtil, win32com.client #System info
+from multiprocessing import freeze_support #For making auto-py-to-exe work with cpuinfo
 
 #Methods
 def openDiskClean():
 	print("\nOpening disk cleanup")
-	startfile("C:\WINDOWS\system32\cleanmgr.exe")
+	subprocess.run(["powershell", "C:\WINDOWS\system32\cleanmgr.exe"], shell=False)
 	print("Opened disk cleanup\nClean any junk files")
 
 def openDefrag():
 	print("\nOpening defrag")
-	startfile("C:\WINDOWS\system32\dfrgui.exe")
+	subprocess.run(["powershell", "C:\WINDOWS\system32\dfrgui.exe"], shell=False)
 	print("Opened defrag\nDefrag / retrim HDDs / SSDs")
 
 def openUpdate():
 	print("\nOpening Windows Update")
-	system("C:\Windows\System32\control.exe /name Microsoft.WindowsUpdate")
+	subprocess.run(["powershell", "C:\Windows\System32\control.exe /name Microsoft.WindowsUpdate"], shell=False)
 	print("Opened Windows Update\nInstall updates, including optional ones")
 
 def activateUltPower():
 	print("\nRunning powercfg command")
-	system("powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61")
+	subprocess.run(["powershell", "powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61"], shell=False)
 	print("\nRan powercfg command\nChange the power plan using the 'Power Plan' button")
 
 def openPowerPlan():
 	print("\nOpening power plan settings")
-	startfile("C:\Windows\System32\powercfg.cpl")
+	subprocess.run(["powershell", "C:\Windows\System32\powercfg.cpl"], shell=False)
 	print("Opened power plan settings\nChange power plan as needed")
 
 def openCrystalDiskInfo():
 	print("\nOpening CrystalDiskInfo")
 	try:
-		startfile("CrystalDiskInfoPortable\DiskInfo64.exe")
+		subprocess.run(["powershell", "CrystalDiskMarkPortable\DiskInfo64.exe"], shell=False)
 		print("Opened CrystalDiskInfo\nCheck storage health")
 	except:
 		print("ERROR: Couldn't open CrystalDiskInfo")
@@ -46,18 +48,18 @@ def openCrystalDiskInfo():
 
 def runSfc():
 	print("\nRunning sfc (this may take some time)")
-	system("sfc /scannow")
+	subprocess.run(["powershell", "sfc /scannow"], shell=False)
 	print("\nRan sfc\nRepaired system files")
 
 def runMemtest():
 	print("\nOpening Windows Memory Diagnostic")
-	startfile("C:\WINDOWS\system32\MdSched.exe")
+	subprocess.run(["powershell", "C:\WINDOWS\system32\MdSched.exe"], shell=False)
 	print("Opened Windows Memory Diagnostic\nFor results, open event viewer\nRight-click on 'System' under 'Windows Logs'\nPress find\nType: 'MemoryDiagnostics-Results'")
 
 def runFurmark():
 	print("\nOpening Furmark")
 	try:
-		startfile("FurMarkPortable\FurMark_win64\FurMark_GUI.exe")
+		subprocess.run(["powershell", "FurMarkPortable\FurMark_win64\FurMark_GUI.exe"], shell=False)
 		print("Opened Furmark\nRun the highest resolution benchmark possible")
 	except:
 		print("ERROR: Couldn't open Furmark")
@@ -68,7 +70,7 @@ def runFurmark():
 def runCinebench():
 	print("\nOpening Cinebench")
 	try:
-		startfile("CinebenchPortable\Cinebench.exe")
+		subprocess.run(["powershell", "CinebenchPortable\Cinebench.exe"], shell=False)
 		print("Opened Cinebench\nRun benchmarks")
 	except:
 		print("ERROR: Couldn't open Cinebench")
@@ -95,7 +97,7 @@ def openAnim():
 def openHWInfo():
 	print("\nOpening HWInfo64")
 	try:
-		startfile("HardwareInfoPortable\HWiNFO64.exe")
+		subprocess.run(["powershell", "HardwareInfoPortable\HWiNFO64.exe"], shell=False)
 		print("Opened HWInfo 64\nCheck any hardware stats")
 	except:
 		print("ERROR: Couldn't open HWInfo64")
@@ -109,7 +111,7 @@ def	openStartupApps():
 
 def openMsConfig():
 	print("\nOpening System Configuration")
-	startfile("C:\WINDOWS\system32\msconfig.exe")
+	subprocess.run(["powershell", "C:\WINDOWS\system32\msconfig.exe"], shell=True)
 	print("Opened System Configuration\nEnsure 'Normal Startup' is selected\nSwitch to 'Boot' tab\nRemove any unwanted OS'")
 
 def openProgramUninstaller():
@@ -120,7 +122,7 @@ def openProgramUninstaller():
 def openCrystalDiskMark():
 	print("\nOpening CrystalDiskMark")
 	try:
-		startfile("CrystalDiskMarkPortable\DiskMark64.exe")
+		subprocess.run(["powershell", "CrystalDiskMarkPortable\DiskMark64.exe"], shell=False)
 		print("Opened CrystalDiskMark\nBenchmark Storage Devices")
 	except:
 		print("ERROR: Couldn't open CrystalDiskMark")
@@ -128,15 +130,88 @@ def openCrystalDiskMark():
 
 def	openTaskManager():
 	print("\nOpening Task Manager")
-	startfile("C:\WINDOWS\system32\Taskmgr.exe")
+	subprocess.run(["powershell", "C:\WINDOWS\system32\Taskmgr.exe"], shell=True)
 	print("Opened Task Manager\nMonitor system components")
 
 def openRestorePoint():
-    print("\nOpening System Properties")
-    startfile("C:\WINDOWS\system32\SystemPropertiesProtection.exe")
-    print("Opened System Properties\nCreate a Restore Point to undo any major system changes")
+	print("\nOpening System Properties")
+	subprocess.run(["powershell", "C:\WINDOWS\system32\SystemPropertiesProtection.exe"], shell=True)
+	print("Opened System Properties\nCreate a Restore Point to undo any major system changes")
 
-#runCommand method is on line 991
+#Get system specs
+sysSpecsText = "Loading..."
+
+#Get CPU information
+
+cpuManufacturer = platform.processor().lower()
+cpuLogicProcessors = str(psutil.cpu_count(logical=True))
+cpuCoreCount = str(psutil.cpu_count(logical=False))
+cpuFreq = str(psutil.cpu_freq(percpu=False)[-1])
+cpuModel = str(cpuinfo.get_cpu_info()['brand_raw'])
+
+#Make CPU manufacturer name easier to read
+if cpuManufacturer[:5] == "intel":
+	cpuManufacturer = "Intel"
+elif cpuManufacturer[:3] == "amd":
+	cpuManufacturer = "AMD"
+else:
+	cpuManufacturer = "Unknown"
+
+sysSpecsText = "CPU Information:"
+sysSpecsText += "\nManufacturer: " + cpuManufacturer
+sysSpecsText += "\nModel: " + cpuModel
+sysSpecsText += "\nCores: " + cpuCoreCount
+sysSpecsText += "\nLogical processors: " + cpuLogicProcessors
+sysSpecsText += "\nBase clock: " + cpuFreq + "MHz\n"
+
+#Get GPU information
+gpus = GPUtil.getGPUs()
+gpuList = []
+
+for gpu in gpus:
+	gpuName = gpu.name
+	gpuManufacturer = ""
+	if gpuName[:6].lower() == "nvidia":
+		gpuManufacturer = "NVIDIA"
+	elif gpuName[:3].lower() == "amd":
+		gpuManufacturer = "AMD"
+	elif gpuName[:5].lower() == "intel":
+		gpuManufacturer = "Intel"
+	gpuVRAM = gpu.memoryTotal
+	gpuList.append(gpuManufacturer)
+	gpuList.append(gpuName)
+	gpuList.append(gpuVRAM)
+
+sysSpecsText += "\nGPU information:"
+#Loop through list & print out info
+gpuListLength = len(gpuList)
+i = 0
+
+while i < gpuListLength:
+	sysSpecsText += "\nManufacturer: " + str(gpuList[i])
+	i+=1
+	sysSpecsText += "\nModel: " + str(gpuList[i])
+	i+=1
+	sysSpecsText += "\nVRAM: " + str(gpuList[i]) + "MB"
+	i+=1
+
+#Get RAM info
+totalRam = str(round(psutil.virtual_memory().total/(1024.**3), 2)) #convert bytes to gigabytes (to the nearest hundredth)
+strComputer = "."
+objWMIService = win32com.client.Dispatch("WbemScripting.SWbemLocator")
+objSWbemServices = objWMIService.ConnectServer(strComputer,"root\cimv2")
+colItems = objSWbemServices.ExecQuery("SELECT * FROM Win32_PhysicalMemory")
+ramSlots = str(len(colItems))
+
+sysSpecsText += "\n\nRAM Info:"
+sysSpecsText += "\nTotal memory installed: " + totalRam + "GB"
+sysSpecsText += "\nSlots being used: " + ramSlots
+
+#TODO: Add storage info
+#TODO: Add frequency information for RAM
+#TODO: Swap as much stuff as possible to WMI maybe? (may help reduce file size)
+
+#runCommand method is on line 1053
 
 
 class Ui_screen(object):
@@ -144,7 +219,7 @@ class Ui_screen(object):
         screen.setObjectName("screen")
         screen.setWindowModality(QtCore.Qt.NonModal)
         screen.setEnabled(True)
-        screen.resize(625, 610)
+        screen.resize(621, 601)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -539,7 +614,7 @@ class Ui_screen(object):
         self.SysConfigBtn_2.setObjectName("SysConfigBtn_2")
         self.btnGrid_2.addWidget(self.SysConfigBtn_2, 3, 2, 1, 1)
         self.warning_2 = QtWidgets.QLabel(self.sysTab)
-        self.warning_2.setGeometry(QtCore.QRect(40, 570, 551, 16))
+        self.warning_2.setGeometry(QtCore.QRect(40, 550, 551, 16))
         self.warning_2.setStyleSheet("color: white;\n"
 "")
         self.warning_2.setScaledContents(False)
@@ -606,7 +681,7 @@ class Ui_screen(object):
         self.CinebenchBtn_2.setObjectName("CinebenchBtn_2")
         self.btnGrid_3.addWidget(self.CinebenchBtn_2, 1, 2, 1, 1)
         self.warning_3 = QtWidgets.QLabel(self.benchTab)
-        self.warning_3.setGeometry(QtCore.QRect(40, 570, 551, 16))
+        self.warning_3.setGeometry(QtCore.QRect(40, 550, 551, 16))
         self.warning_3.setStyleSheet("color: white;\n"
 "")
         self.warning_3.setScaledContents(False)
@@ -689,7 +764,7 @@ class Ui_screen(object):
         self.CrystalDiskInfoBtn_2.setObjectName("CrystalDiskInfoBtn_2")
         self.btnGrid_4.addWidget(self.CrystalDiskInfoBtn_2, 1, 0, 1, 1)
         self.warning_4 = QtWidgets.QLabel(self.monitorTab)
-        self.warning_4.setGeometry(QtCore.QRect(40, 570, 551, 16))
+        self.warning_4.setGeometry(QtCore.QRect(40, 550, 551, 16))
         self.warning_4.setStyleSheet("color: white;\n"
 "")
         self.warning_4.setScaledContents(False)
@@ -702,7 +777,7 @@ class Ui_screen(object):
 "")
         self.storageTab.setObjectName("storageTab")
         self.warning_5 = QtWidgets.QLabel(self.storageTab)
-        self.warning_5.setGeometry(QtCore.QRect(40, 570, 551, 16))
+        self.warning_5.setGeometry(QtCore.QRect(40, 550, 551, 16))
         self.warning_5.setStyleSheet("color: white;\n"
 "")
         self.warning_5.setScaledContents(False)
@@ -849,7 +924,29 @@ class Ui_screen(object):
 "")
         self.CrystalDiskMarkBtn_4.setObjectName("CrystalDiskMarkBtn_4")
         self.btnGrid_5.addWidget(self.CrystalDiskMarkBtn_4, 1, 1, 1, 1)
+        self.gridLayoutWidget_5.raise_()
+        self.warning_5.raise_()
         self.tabWidget.addTab(self.storageTab, "")
+        self.specs = QtWidgets.QWidget()
+        self.specs.setStyleSheet("background-color: #1f1f1f;\n"
+"border: none;\n"
+"")
+        self.specs.setObjectName("specs")
+        self.sysSpecsLabel = QtWidgets.QLabel(self.specs)
+        self.sysSpecsLabel.setGeometry(QtCore.QRect(10, 20, 581, 511))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.sysSpecsLabel.setFont(font)
+        self.sysSpecsLabel.setStyleSheet("color: white;")
+        self.sysSpecsLabel.setObjectName("sysSpecsLabel")
+        self.warning_6 = QtWidgets.QLabel(self.specs)
+        self.warning_6.setGeometry(QtCore.QRect(40, 550, 551, 16))
+        self.warning_6.setStyleSheet("color: white;\n"
+"")
+        self.warning_6.setScaledContents(False)
+        self.warning_6.setAlignment(QtCore.Qt.AlignCenter)
+        self.warning_6.setObjectName("warning_6")
+        self.tabWidget.addTab(self.specs, "")
         self.cmdTab = QtWidgets.QWidget()
         self.cmdTab.setStyleSheet("background-color: #1f1f1f;\n"
 "border: none;\n"
@@ -1018,12 +1115,19 @@ class Ui_screen(object):
         self.commandTextbox.setStyleSheet("background-color: #000000; color: white; border-radius: 17px;")
         self.commandTextbox.setDragEnabled(False)
         self.commandTextbox.setObjectName("commandTextbox")
+        self.warning_7 = QtWidgets.QLabel(self.cmdTab)
+        self.warning_7.setGeometry(QtCore.QRect(40, 550, 551, 16))
+        self.warning_7.setStyleSheet("color: white;\n"
+"")
+        self.warning_7.setScaledContents(False)
+        self.warning_7.setAlignment(QtCore.Qt.AlignCenter)
+        self.warning_7.setObjectName("warning_7")
         self.tabWidget.addTab(self.cmdTab, "")
         screen.setCentralWidget(self.centralwidget)
 
         #runCommand method
         def runCommand():
-            system(self.commandTextbox.text())
+            subprocess.run(["powershell", self.commandTextbox.text()], shell=True)
 
         self.retranslateUi(screen)
         self.tabWidget.setCurrentIndex(0)
@@ -1089,13 +1193,18 @@ class Ui_screen(object):
         self.CrystalDiskInfoBtn_3.setText(_translate("screen", "CrystalDiskInfo"))
         self.CrystalDiskMarkBtn_4.setText(_translate("screen", "CrystalDiskMark"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.storageTab), _translate("screen", "Storage"))
+        self.sysSpecsLabel.setText(_translate("screen", sysSpecsText))
+        self.warning_6.setText(_translate("screen", "Created by 3XAY. This software is not responsible for any harm caused to any computers."))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.specs), _translate("screen", "Specs"))
         self.commandButton.setText(_translate("screen", "Enter Command"))
         self.commandTextbox.setPlaceholderText(_translate("screen", "Enter a Windows command here..."))
+        self.warning_7.setText(_translate("screen", "Created by 3XAY. This software is not responsible for any harm caused to any computers."))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.cmdTab), _translate("screen", "Commands"))
 
 
 if __name__ == "__main__":
     import sys
+    freeze_support()
     app = QtWidgets.QApplication(sys.argv)
     screen = QtWidgets.QMainWindow()
     ui = Ui_screen()
