@@ -6,41 +6,41 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets #UI
-import winreg #Reg edit 
-import subprocess #Running commands, opening apps, basically everything
-import wmi #System info
+from winreg import OpenKey, SetValueEx, CloseKey #Reg edit 
+from subprocess import run #Running commands, opening apps, basically everything
+from wmi import WMI  #System info
 from multiprocessing import freeze_support #For making auto-py-to-exe work with cpuinfo
 
 #Methods
 def openDiskClean():
 	print("\nOpening disk cleanup")
-	subprocess.run(["powershell", "C:\WINDOWS\system32\cleanmgr.exe"], shell=False)
+	run(["powershell", "C:\WINDOWS\system32\cleanmgr.exe"], shell=False)
 	print("Opened disk cleanup\nClean any junk files")
 
 def openDefrag():
 	print("\nOpening defrag")
-	subprocess.run(["powershell", "C:\WINDOWS\system32\dfrgui.exe"], shell=False)
+	run(["powershell", "C:\WINDOWS\system32\dfrgui.exe"], shell=False)
 	print("Opened defrag\nDefrag / retrim HDDs / SSDs")
 
 def openUpdate():
 	print("\nOpening Windows Update")
-	subprocess.run(["powershell", "C:\Windows\System32\control.exe /name Microsoft.WindowsUpdate"], shell=False)
+	run(["powershell", "C:\Windows\System32\control.exe /name Microsoft.WindowsUpdate"], shell=False)
 	print("Opened Windows Update\nInstall updates, including optional ones")
 
 def activateUltPower():
 	print("\nRunning powercfg command")
-	subprocess.run(["powershell", "powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61"], shell=False)
+	run(["powershell", "powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61"], shell=False)
 	print("\nRan powercfg command\nChange the power plan using the 'Power Plan' button")
 
 def openPowerPlan():
 	print("\nOpening power plan settings")
-	subprocess.run(["powershell", "C:\Windows\System32\powercfg.cpl"], shell=False)
+	run(["powershell", "C:\Windows\System32\powercfg.cpl"], shell=False)
 	print("Opened power plan settings\nChange power plan as needed")
 
 def openCrystalDiskInfo():
 	print("\nOpening CrystalDiskInfo")
 	try:
-		subprocess.run(["powershell", "CrystalDiskMarkPortable\DiskInfo64.exe"], shell=False)
+		run(["powershell", "CrystalDiskMarkPortable\DiskInfo64.exe"], shell=False)
 		print("Opened CrystalDiskInfo\nCheck storage health")
 	except:
 		print("ERROR: Couldn't open CrystalDiskInfo")
@@ -48,18 +48,18 @@ def openCrystalDiskInfo():
 
 def runSfc():
 	print("\nRunning sfc (this may take some time)")
-	subprocess.run(["powershell", "sfc /scannow"], shell=False)
+	run(["powershell", "sfc /scannow"], shell=False)
 	print("\nRan sfc\nRepaired system files")
 
 def runMemtest():
 	print("\nOpening Windows Memory Diagnostic")
-	subprocess.run(["powershell", "C:\WINDOWS\system32\MdSched.exe"], shell=False)
+	run(["powershell", "C:\WINDOWS\system32\MdSched.exe"], shell=False)
 	print("Opened Windows Memory Diagnostic\nFor results, open event viewer\nRight-click on 'System' under 'Windows Logs'\nPress find\nType: 'MemoryDiagnostics-Results'")
 
 def runFurmark():
 	print("\nOpening Furmark")
 	try:
-		subprocess.run(["powershell", "FurMarkPortable\FurMark_win64\FurMark_GUI.exe"], shell=False)
+		run(["powershell", "FurMarkPortable\FurMark_win64\FurMark_GUI.exe"], shell=False)
 		print("Opened Furmark\nRun the highest resolution benchmark possible")
 	except:
 		print("ERROR: Couldn't open Furmark")
@@ -70,7 +70,7 @@ def runFurmark():
 def runCinebench():
 	print("\nOpening Cinebench")
 	try:
-		subprocess.run(["powershell", "CinebenchPortable\Cinebench.exe"], shell=False)
+		run(["powershell", "CinebenchPortable\Cinebench.exe"], shell=False)
 		print("Opened Cinebench\nRun benchmarks")
 	except:
 		print("ERROR: Couldn't open Cinebench")
@@ -80,12 +80,12 @@ def runCinebench():
 def openAnim():
 	print("\nOpening registry...")
 	try:
-		key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Control Panel\Desktop", 0, winreg.KEY_ALL_ACCESS)
+		key = OpenKey(winreg.HKEY_CURRENT_USER, r"Control Panel\Desktop", 0, winreg.KEY_ALL_ACCESS)
 		print("Currently set to: " + str(winreg.QueryValueEx(key, "MenuShowDelay")))
 		print("Changing value to 200...")
 		try:
-			winreg.SetValueEx(key, "MenuShowDelay", 0, winreg.REG_SZ, "200")
-			winreg.CloseKey(key)
+			SetValueEx(key, "MenuShowDelay", 0, winreg.REG_SZ, "200")
+			CloseKey(key)
 			print("Animation delay is set to 200ms")
 		except:
 			print("ERROR: Unable to write to registry, try running in Administrator mode")
@@ -97,7 +97,7 @@ def openAnim():
 def openHWInfo():
 	print("\nOpening HWInfo64")
 	try:
-		subprocess.run(["powershell", "HardwareInfoPortable\HWiNFO64.exe"], shell=False)
+		run(["powershell", "HardwareInfoPortable\HWiNFO64.exe"], shell=False)
 		print("Opened HWInfo 64\nCheck any hardware stats")
 	except:
 		print("ERROR: Couldn't open HWInfo64")
@@ -106,23 +106,23 @@ def openHWInfo():
 
 def	openStartupApps():
 	print("\nOpening Task Manager")
-	subprocess.run(["powershell", "taskmgr /startup"], shell=True)
+	run(["powershell", "taskmgr /startup"], shell=True)
 	print("Opened startup apps tab in Task Manager")
 
 def openMsConfig():
 	print("\nOpening System Configuration")
-	subprocess.run(["powershell", "C:\WINDOWS\system32\msconfig.exe"], shell=True)
+	run(["powershell", "C:\WINDOWS\system32\msconfig.exe"], shell=True)
 	print("Opened System Configuration\nEnsure 'Normal Startup' is selected\nSwitch to 'Boot' tab\nRemove any unwanted OS'")
 
 def openProgramUninstaller():
 	print("\nOpening Installed Apps")
-	subprocess.run(["powershell", "start ms-settings:appsfeatures-app"], shell=True)
+	run(["powershell", "start ms-settings:appsfeatures-app"], shell=True)
 	print("Opened Installed Apps\nUninstall apps from here")
 
 def openCrystalDiskMark():
 	print("\nOpening CrystalDiskMark")
 	try:
-		subprocess.run(["powershell", "CrystalDiskMarkPortable\DiskMark64.exe"], shell=False)
+		run(["powershell", "CrystalDiskMarkPortable\DiskMark64.exe"], shell=False)
 		print("Opened CrystalDiskMark\nBenchmark Storage Devices")
 	except:
 		print("ERROR: Couldn't open CrystalDiskMark")
@@ -130,19 +130,19 @@ def openCrystalDiskMark():
 
 def	openTaskManager():
 	print("\nOpening Task Manager")
-	subprocess.run(["powershell", "C:\WINDOWS\system32\Taskmgr.exe"], shell=True)
+	run(["powershell", "C:\WINDOWS\system32\Taskmgr.exe"], shell=True)
 	print("Opened Task Manager\nMonitor system components")
 
 def openRestorePoint():
 	print("\nOpening System Properties")
-	subprocess.run(["powershell", "C:\WINDOWS\system32\SystemPropertiesProtection.exe"], shell=True)
+	run(["powershell", "C:\WINDOWS\system32\SystemPropertiesProtection.exe"], shell=True)
 	print("Opened System Properties\nCreate a Restore Point to undo any major system changes")
 
 #Get system specs
 sysSpecsText = "Loading..."
 
 #Create computer object
-c = wmi.WMI()
+c = WMI()
 
 #Get CPU info
 sysSpecsText = "CPU Information:"
@@ -177,18 +177,19 @@ sysSpecsText += "\nManufacturer: " + str(manu)
 sysSpecsText += "\nPart Number: " + str(partNumber)
 sysSpecsText += "\nSlots being used: " + str(slots)
 
+sysSpecsText += "\n\n\n\n\nTest\n\n\n\nTest2"
+
 #TODO: Add storage info
 #TODO: Add network info
 
 #runCommand method is on line 1053
-
 
 class Ui_screen(object):
     def setupUi(self, screen):
         screen.setObjectName("screen")
         screen.setWindowModality(QtCore.Qt.NonModal)
         screen.setEnabled(True)
-        screen.resize(621, 601)
+        screen.resize(625, 610)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -901,13 +902,6 @@ class Ui_screen(object):
 "border: none;\n"
 "")
         self.specs.setObjectName("specs")
-        self.sysSpecsLabel = QtWidgets.QLabel(self.specs)
-        self.sysSpecsLabel.setGeometry(QtCore.QRect(10, 20, 581, 511))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.sysSpecsLabel.setFont(font)
-        self.sysSpecsLabel.setStyleSheet("color: white;")
-        self.sysSpecsLabel.setObjectName("sysSpecsLabel")
         self.warning_6 = QtWidgets.QLabel(self.specs)
         self.warning_6.setGeometry(QtCore.QRect(40, 550, 551, 16))
         self.warning_6.setStyleSheet("color: white;\n"
@@ -915,6 +909,97 @@ class Ui_screen(object):
         self.warning_6.setScaledContents(False)
         self.warning_6.setAlignment(QtCore.Qt.AlignCenter)
         self.warning_6.setObjectName("warning_6")
+        self.scrollArea = QtWidgets.QScrollArea(self.specs)
+        self.scrollArea.setGeometry(QtCore.QRect(20, 10, 591, 521))
+        self.scrollArea.setStyleSheet("QScrollBar:vertical{\n"
+"    border: none;\n"
+"    background-color: rgb(10,10,10);\n"
+"    width: 14px;\n"
+"    margin: 15px 0 15px 0;\n"
+"    border-radius: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical{\n"
+"    background-color: rgb(0, 0, 0);\n"
+"    min-height: 30px;\n"
+"    border-radius: 7px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical:hover{\n"
+"    background-color: rgb(176, 118, 7);\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical:pressed{\n"
+"    background-color: rgb(252, 169, 10);\n"
+"}\n"
+"\n"
+"QScrollBar::sub-line:vertical{\n"
+"    border: none;\n"
+"    background-color: rgb(10,10,10);\n"
+"    height: 15px;\n"
+"    border-top-left-radius: 7px;\n"
+"    border-top-right-radius: 7px;\n"
+"    subcontrol-position: top;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-line:vertical:hover{\n"
+"    background-color: rgb(20,20,20);\n"
+"}\n"
+"\n"
+"QScrollBar::sub-line:vertical:pressed{\n"
+"    background-color: rgb(15,15,15);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical{\n"
+"    border: none;\n"
+"    background-color: rgb(10,10,10);\n"
+"    height: 15px;\n"
+"    border-bottom-left-radius: 7px;\n"
+"    border-bottom-right-radius: 7px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical:hover{\n"
+"    background-color: rgb(20,20,20);\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical:pressed{\n"
+"    background-color: rgb(15,15,15);\n"
+"}\n"
+"\n"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical{\n"
+"    background: none;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical{\n"
+"    background: none;\n"
+"}")
+        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 577, 521))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.sysSpecsLabel = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.sysSpecsLabel.sizePolicy().hasHeightForWidth())
+        self.sysSpecsLabel.setSizePolicy(sizePolicy)
+        self.sysSpecsLabel.setMinimumSize(QtCore.QSize(0, 100))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.sysSpecsLabel.setFont(font)
+        self.sysSpecsLabel.setStyleSheet("color: white;")
+        self.sysSpecsLabel.setScaledContents(True)
+        self.sysSpecsLabel.setWordWrap(True)
+        self.sysSpecsLabel.setObjectName("sysSpecsLabel")
+        self.verticalLayout.addWidget(self.sysSpecsLabel)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.tabWidget.addTab(self.specs, "")
         self.cmdTab = QtWidgets.QWidget()
         self.cmdTab.setStyleSheet("background-color: #1f1f1f;\n"
@@ -1096,7 +1181,7 @@ class Ui_screen(object):
 
         #runCommand method
         def runCommand():
-            subprocess.run(["powershell", self.commandTextbox.text()], shell=True)
+            run(["powershell", self.commandTextbox.text()], shell=True)
 
         self.retranslateUi(screen)
         self.tabWidget.setCurrentIndex(0)
@@ -1162,8 +1247,8 @@ class Ui_screen(object):
         self.CrystalDiskInfoBtn_3.setText(_translate("screen", "CrystalDiskInfo"))
         self.CrystalDiskMarkBtn_4.setText(_translate("screen", "CrystalDiskMark"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.storageTab), _translate("screen", "Storage"))
-        self.sysSpecsLabel.setText(_translate("screen", sysSpecsText))
         self.warning_6.setText(_translate("screen", "Created by 3XAY. This software is not responsible for any harm caused to any computers."))
+        self.sysSpecsLabel.setText(_translate("screen", sysSpecsText))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.specs), _translate("screen", "Specs"))
         self.commandButton.setText(_translate("screen", "Enter Command"))
         self.commandTextbox.setPlaceholderText(_translate("screen", "Enter a Windows command here..."))

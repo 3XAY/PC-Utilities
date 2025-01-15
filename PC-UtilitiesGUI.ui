@@ -1469,27 +1469,6 @@ border: none;
      <attribute name="title">
       <string>Specs</string>
      </attribute>
-     <widget class="QLabel" name="sysSpecsLabel">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>581</width>
-        <height>511</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: white;</string>
-      </property>
-      <property name="text">
-       <string>Loading...</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="warning_6">
       <property name="geometry">
        <rect>
@@ -1512,6 +1491,134 @@ border: none;
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+     </widget>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>591</width>
+        <height>521</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QScrollBar:vertical{
+	border: none;
+	background-color: rgb(10,10,10);
+	width: 14px;
+	margin: 15px 0 15px 0;
+	border-radius: 0px;
+}
+
+QScrollBar::handle:vertical{
+	background-color: rgb(0, 0, 0);
+	min-height: 30px;
+	border-radius: 7px;
+}
+
+QScrollBar::handle:vertical:hover{
+	background-color: rgb(176, 118, 7);
+}
+
+QScrollBar::handle:vertical:pressed{
+	background-color: rgb(252, 169, 10);
+}
+
+QScrollBar::sub-line:vertical{
+	border: none;
+	background-color: rgb(10,10,10);
+	height: 15px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:vertical:hover{
+	background-color: rgb(20,20,20);
+}
+
+QScrollBar::sub-line:vertical:pressed{
+	background-color: rgb(15,15,15);
+}
+
+QScrollBar::add-line:vertical{
+	border: none;
+	background-color: rgb(10,10,10);
+	height: 15px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;
+}
+
+QScrollBar::add-line:vertical:hover{
+	background-color: rgb(20,20,20);
+}
+
+QScrollBar::add-line:vertical:pressed{
+	background-color: rgb(15,15,15);
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical{
+	background: none;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical{
+	background: none;
+}</string>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>577</width>
+         <height>521</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="sysSpecsLabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: white;</string>
+          </property>
+          <property name="text">
+           <string>Loading...</string>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="cmdTab">
