@@ -6,7 +6,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets #UI
-from winreg import OpenKey, SetValueEx, CloseKey #Reg edit 
+from winreg import OpenKey, SetValueEx, CloseKey, HKEY_CURRENT_USER, KEY_ALL_ACCESS, QueryValueEx, REG_SZ #Reg edit 
 from subprocess import run #Running commands, opening apps, basically everything
 from wmi import WMI  #System info
 from multiprocessing import freeze_support #For making auto-py-to-exe work with cpuinfo
@@ -14,17 +14,17 @@ from multiprocessing import freeze_support #For making auto-py-to-exe work with 
 #Methods
 def openDiskClean():
 	print("\nOpening disk cleanup")
-	run(["powershell", "C:\WINDOWS\system32\cleanmgr.exe"], shell=False)
+	run(["powershell", "C:\\WINDOWS\\system32\\cleanmgr.exe"], shell=False)
 	print("Opened disk cleanup\nClean any junk files")
 
 def openDefrag():
 	print("\nOpening defrag")
-	run(["powershell", "C:\WINDOWS\system32\dfrgui.exe"], shell=False)
+	run(["powershell", "C:\\WINDOWS\\system32\\dfrgui.exe"], shell=False)
 	print("Opened defrag\nDefrag / retrim HDDs / SSDs")
 
 def openUpdate():
 	print("\nOpening Windows Update")
-	run(["powershell", "C:\Windows\System32\control.exe /name Microsoft.WindowsUpdate"], shell=False)
+	run(["powershell", "C:\\Windows\\System32\\control.exe /name Microsoft.WindowsUpdate"], shell=False)
 	print("Opened Windows Update\nInstall updates, including optional ones")
 
 def activateUltPower():
@@ -34,13 +34,13 @@ def activateUltPower():
 
 def openPowerPlan():
 	print("\nOpening power plan settings")
-	run(["powershell", "C:\Windows\System32\powercfg.cpl"], shell=False)
+	run(["powershell", "C:\\Windows\\System32\\powercfg.cpl"], shell=False)
 	print("Opened power plan settings\nChange power plan as needed")
 
 def openCrystalDiskInfo():
 	print("\nOpening CrystalDiskInfo")
 	try:
-		run(["powershell", "CrystalDiskMarkPortable\DiskInfo64.exe"], shell=False)
+		run(["powershell", "CrystalDiskMarkPortable\\DiskInfo64.exe"], shell=False)
 		print("Opened CrystalDiskInfo\nCheck storage health")
 	except:
 		print("ERROR: Couldn't open CrystalDiskInfo")
@@ -53,13 +53,13 @@ def runSfc():
 
 def runMemtest():
 	print("\nOpening Windows Memory Diagnostic")
-	run(["powershell", "C:\WINDOWS\system32\MdSched.exe"], shell=False)
+	run(["powershell", "C:\\WINDOWS\\system32\\MdSched.exe"], shell=False)
 	print("Opened Windows Memory Diagnostic\nFor results, open event viewer\nRight-click on 'System' under 'Windows Logs'\nPress find\nType: 'MemoryDiagnostics-Results'")
 
 def runFurmark():
 	print("\nOpening Furmark")
 	try:
-		run(["powershell", "FurMarkPortable\FurMark_win64\FurMark_GUI.exe"], shell=False)
+		run(["powershell", "FurMarkPortable\\FurMark_win64\\FurMark_GUI.exe"], shell=False)
 		print("Opened Furmark\nRun the highest resolution benchmark possible")
 	except:
 		print("ERROR: Couldn't open Furmark")
@@ -70,7 +70,7 @@ def runFurmark():
 def runCinebench():
 	print("\nOpening Cinebench")
 	try:
-		run(["powershell", "CinebenchPortable\Cinebench.exe"], shell=False)
+		run(["powershell", "CinebenchPortable\\Cinebench.exe"], shell=False)
 		print("Opened Cinebench\nRun benchmarks")
 	except:
 		print("ERROR: Couldn't open Cinebench")
@@ -80,11 +80,11 @@ def runCinebench():
 def openAnim():
 	print("\nOpening registry...")
 	try:
-		key = OpenKey(winreg.HKEY_CURRENT_USER, r"Control Panel\Desktop", 0, winreg.KEY_ALL_ACCESS)
-		print("Currently set to: " + str(winreg.QueryValueEx(key, "MenuShowDelay")))
+		key = OpenKey(HKEY_CURRENT_USER, r"Control Panel\Desktop", 0, KEY_ALL_ACCESS)
+		print("Currently set to: " + str(QueryValueEx(key, "MenuShowDelay")))
 		print("Changing value to 200...")
 		try:
-			SetValueEx(key, "MenuShowDelay", 0, winreg.REG_SZ, "200")
+			SetValueEx(key, "MenuShowDelay", 0, REG_SZ, "200")
 			CloseKey(key)
 			print("Animation delay is set to 200ms")
 		except:
@@ -97,7 +97,7 @@ def openAnim():
 def openHWInfo():
 	print("\nOpening HWInfo64")
 	try:
-		run(["powershell", "HardwareInfoPortable\HWiNFO64.exe"], shell=False)
+		run(["powershell", "HardwareInfoPortable\\HWiNFO64.exe"], shell=False)
 		print("Opened HWInfo 64\nCheck any hardware stats")
 	except:
 		print("ERROR: Couldn't open HWInfo64")
@@ -111,7 +111,7 @@ def	openStartupApps():
 
 def openMsConfig():
 	print("\nOpening System Configuration")
-	run(["powershell", "C:\WINDOWS\system32\msconfig.exe"], shell=True)
+	run(["powershell", "C:\\WINDOWS\\system32\\msconfig.exe"], shell=True)
 	print("Opened System Configuration\nEnsure 'Normal Startup' is selected\nSwitch to 'Boot' tab\nRemove any unwanted OS'")
 
 def openProgramUninstaller():
@@ -122,7 +122,7 @@ def openProgramUninstaller():
 def openCrystalDiskMark():
 	print("\nOpening CrystalDiskMark")
 	try:
-		run(["powershell", "CrystalDiskMarkPortable\DiskMark64.exe"], shell=False)
+		run(["powershell", "CrystalDiskMarkPortable\\DiskMark64.exe"], shell=False)
 		print("Opened CrystalDiskMark\nBenchmark Storage Devices")
 	except:
 		print("ERROR: Couldn't open CrystalDiskMark")
@@ -130,12 +130,12 @@ def openCrystalDiskMark():
 
 def	openTaskManager():
 	print("\nOpening Task Manager")
-	run(["powershell", "C:\WINDOWS\system32\Taskmgr.exe"], shell=True)
+	run(["powershell", "C:\\WINDOWS\\system32\\Taskmgr.exe"], shell=True)
 	print("Opened Task Manager\nMonitor system components")
 
 def openRestorePoint():
 	print("\nOpening System Properties")
-	run(["powershell", "C:\WINDOWS\system32\SystemPropertiesProtection.exe"], shell=True)
+	run(["powershell", "C:\\WINDOWS\\system32\\SystemPropertiesProtection.exe"], shell=True)
 	print("Opened System Properties\nCreate a Restore Point to undo any major system changes")
 
 #Get system specs
