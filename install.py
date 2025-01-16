@@ -33,7 +33,7 @@ installStep("Downloading Furmark...", "curl https://geeks3d.com/dl/get/771 -o PC
 installStep("Extracting Furmark...", "Expand-Archive -Force PC-Utilities/Furmark.zip PC-Utilities/FurMarkPortable", "ERROR: Unable to extract Furmark")
 
 #HWInfo
-installStep("Downloading HWInfo...", "curl https://www.sac.sk/download/utildiag/hwi_816.zip -o PC-Utilities/HWInfo.zip", "ERROR: Unable to download HWInfo, check your internet connection") #Downloads from Slovakia
+installStep("Downloading HWInfo...", "curl https://www.sac.sk/download/utildiag/hwi_820.zip -o PC-Utilities/HWInfo.zip", "ERROR: Unable to download HWInfo, check your internet connection") #Downloads from Slovakia
 installStep("Extracting HWInfo...", "Expand-Archive -Force PC-Utilities/HWInfo.zip PC-Utilities/HardwareInfoPortable", "ERROR: Unable to extract HWInfo")
 
 #CrystalDiskInfo
