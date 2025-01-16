@@ -150,14 +150,17 @@ for cpu in c.Win32_Processor():
 	sysSpecsText += "\nModel: " + str(cpu.Name)
 	sysSpecsText += "\nCores: " + str(cpu.NumberOfCores)
 	sysSpecsText += "\nThreads: " + str(cpu.ThreadCount)
-	sysSpecsText += "\nBase clock: " + str(cpu.CurrentClockSpeed) + "MHz\n"
+	sysSpecsText += "\nBase clock: " + str(cpu.CurrentClockSpeed) + "MHz"
 
+sysSpecsText += "\n———————————————————————————"
 
 #Get GPU information
-sysSpecsText += "\nGPU information:"
+sysSpecsText += "\n\nGPU information:"
 for gpu in c.win32_VideoController():
 	sysSpecsText += "\nModel: " + str(gpu.Name)
-	sysSpecsText += "\nStatus: " + str(gpu.Status)
+	sysSpecsText += "\nStatus: " + str(gpu.Status) +"\n"
+
+sysSpecsText += "\n———————————————————————————"
 
 #Get RAM info
 sysSpecsText += "\n\nRAM information:"
@@ -177,12 +180,28 @@ sysSpecsText += "\nManufacturer: " + str(manu)
 sysSpecsText += "\nPart Number: " + str(partNumber)
 sysSpecsText += "\nSlots being used: " + str(slots)
 
-sysSpecsText += "\n\n\n\n\nTest\n\n\n\nTest2"
+sysSpecsText += "\n———————————————————————————"
 
-#TODO: Add storage info
-#TODO: Add network info
+#Get storage info
+sysSpecsText += "\n\nStorage information:"
+for disk in c.Win32_DiskDrive():
+	sysSpecsText += "\nModel: " + str(disk.Model)
+	sysSpecsText += "\nCapacity: " + str(round((int(disk.Size)) / (1024**3), 2)) + "GB" #Bytes to GB
+	sysSpecsText += "\nPartitions: " + str(disk.Partitions) + "\n"
 
-#runCommand method is on line 1053
+sysSpecsText += "\n———————————————————————————"
+
+#Get network info
+sysSpecsText += "\n\nNetwork information:"
+sysSpecsText += "\n(Only connected interfaces are shown)\n"
+for adapter in c.Win32_NetworkAdapter(NetEnabled=True): #Ensures only active adapters are listed
+	sysSpecsText += "\nName: " + str(adapter.Name)
+	sysSpecsText += "\nManufacturer: " + str(adapter.Manufacturer)
+	sysSpecsText += "\nMAC Address: " + str(adapter.MACAddress)
+	sysSpecsText += "\nAdapter Type: " + str(adapter.AdapterType)
+	sysSpecsText += "\nMax speed: " + str(round(int(adapter.Speed) / (1000**3), 1)) + "Gbps\n"
+
+#runCommand method is on line 1202
 
 class Ui_screen(object):
     def setupUi(self, screen):

@@ -22,10 +22,6 @@
    "value": "PC-Utilities"
   },
   {
-   "optionDest": "upx_dir",
-   "value": "P:/upx-4.2.4-win64/upx-4.2.4-win64"
-  },
-  {
    "optionDest": "clean_build",
    "value": true
   },
@@ -47,7 +43,7 @@
   },
   {
    "optionDest": "uac_uiaccess",
-   "value": true
+   "value": false
   },
   {
    "optionDest": "argv_emulation",
