@@ -12,72 +12,47 @@ from wmi import WMI  #System info
 from multiprocessing import freeze_support #For making auto-py-to-exe work with cpuinfo
 
 #Methods
-def openDiskClean():
+def openRestorePoint(): #Open SystemPropertiesProtection.exe which is the menu to create restore points, via PowerShell
+	print("\nOpening System Properties")
+	run(["powershell", "C:\\WINDOWS\\system32\\SystemPropertiesProtection.exe"], shell=True)
+	print("Opened System Properties\nCreate a Restore Point to undo any major system changes")
+
+def openDiskClean(): #Opens cleanmgr.exe which allows you to delete temporary files, via PowerShell
 	print("\nOpening disk cleanup")
 	run(["powershell", "C:\\WINDOWS\\system32\\cleanmgr.exe"], shell=False)
 	print("Opened disk cleanup\nClean any junk files")
 
-def openDefrag():
+def openDefrag(): #Opens dfrgui.exe which allows you to defrag / retrim HDDs/SSDs to optimize them, via PowerShell
 	print("\nOpening defrag")
 	run(["powershell", "C:\\WINDOWS\\system32\\dfrgui.exe"], shell=False)
 	print("Opened defrag\nDefrag / retrim HDDs / SSDs")
 
-def openUpdate():
-	print("\nOpening Windows Update")
-	run(["powershell", "C:\\Windows\\System32\\control.exe /name Microsoft.WindowsUpdate"], shell=False)
-	print("Opened Windows Update\nInstall updates, including optional ones")
-
-def activateUltPower():
+def activateUltPower(): #Run the command to unlock the Ultimate Power Plan option in the power plan settings, via PowerShell
 	print("\nRunning powercfg command")
 	run(["powershell", "powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61"], shell=False)
 	print("\nRan powercfg command\nChange the power plan using the 'Power Plan' button")
 
-def openPowerPlan():
+def openPowerPlan(): #Opens powercfg.cpl which opens the Power Plan section in the Control Panel, via PowerShell
 	print("\nOpening power plan settings")
 	run(["powershell", "C:\\Windows\\System32\\powercfg.cpl"], shell=False)
 	print("Opened power plan settings\nChange power plan as needed")
 
-def openCrystalDiskInfo():
-	print("\nOpening CrystalDiskInfo")
-	try:
-		run(["powershell", "CrystalDiskMarkPortable\\DiskInfo64.exe"], shell=False)
-		print("Opened CrystalDiskInfo\nCheck storage health")
-	except:
-		print("ERROR: Couldn't open CrystalDiskInfo")
-		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
+def openProgramUninstaller(): #Run the correct command in PowerShell to open the Installed Apps menu in the Settings app
+	print("\nOpening Installed Apps")
+	run(["powershell", "start ms-settings:appsfeatures-app"], shell=True)
+	print("Opened Installed Apps\nUninstall apps from here")
 
-def runSfc():
-	print("\nRunning sfc (this may take some time)")
-	run(["powershell", "sfc /scannow"], shell=False)
-	print("\nRan sfc\nRepaired system files")
+def openUpdate(): #Opens control.exe with the correct arguments to open the Windows Update GUI in the Settings App, via PowerShell
+	print("\nOpening Windows Update")
+	run(["powershell", "C:\\Windows\\System32\\control.exe /name Microsoft.WindowsUpdate"], shell=False)
+	print("Opened Windows Update\nInstall updates, including optional ones")
 
-def runMemtest():
-	print("\nOpening Windows Memory Diagnostic")
-	run(["powershell", "C:\\WINDOWS\\system32\\MdSched.exe"], shell=False)
-	print("Opened Windows Memory Diagnostic\nFor results, open event viewer\nRight-click on 'System' under 'Windows Logs'\nPress find\nType: 'MemoryDiagnostics-Results'")
+def	openStartupApps(): #Runs taskmgr command with the startup argument, via PowerShell
+	print("\nOpening Task Manager")
+	run(["powershell", "taskmgr /startup"], shell=True)
+	print("Opened startup apps tab in Task Manager")
 
-def runFurmark():
-	print("\nOpening Furmark")
-	try:
-		run(["powershell", "FurMarkPortable\\FurMark_win64\\FurMark_GUI.exe"], shell=False)
-		print("Opened Furmark\nRun the highest resolution benchmark possible")
-	except:
-		print("ERROR: Couldn't open Furmark")
-		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
-	
-	
-
-def runCinebench():
-	print("\nOpening Cinebench")
-	try:
-		run(["powershell", "CinebenchPortable\\Cinebench.exe"], shell=False)
-		print("Opened Cinebench\nRun benchmarks")
-	except:
-		print("ERROR: Couldn't open Cinebench")
-		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
-	
-
-def openAnim():
+def openAnim(): #Read registry key, set to 200, close key
 	print("\nOpening registry...")
 	try:
 		key = OpenKey(HKEY_CURRENT_USER, r"Control Panel\Desktop", 0, KEY_ALL_ACCESS)
@@ -94,32 +69,45 @@ def openAnim():
 	print("You can manually modify the key at Computer/HKEY_CURRENT_USER/Control Panel/Desktop and change the MenuShowDelay value in milliseconds")
 	print("Don't forget to restart the computer for the changes to take effect")
 
-def openHWInfo():
-	print("\nOpening HWInfo64")
-	try:
-		run(["powershell", "HardwareInfoPortable\\HWiNFO64.exe"], shell=False)
-		print("Opened HWInfo 64\nCheck any hardware stats")
-	except:
-		print("ERROR: Couldn't open HWInfo64")
-		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
-	
+def runSfc(): #Run sfc /scannow in PowerShell
+	print("\nRunning sfc (this may take some time)")
+	run(["powershell", "sfc /scannow"], shell=False)
+	print("\nRan sfc\nRepaired system files")
 
-def	openStartupApps():
-	print("\nOpening Task Manager")
-	run(["powershell", "taskmgr /startup"], shell=True)
-	print("Opened startup apps tab in Task Manager")
+def runMemtest(): #Opens the built-in memory diagnostic app in Windows via PowerShell
+	print("\nOpening Windows Memory Diagnostic")
+	run(["powershell", "C:\\WINDOWS\\system32\\MdSched.exe"], shell=False)
+	print("Opened Windows Memory Diagnostic\nFor results, open event viewer\nRight-click on 'System' under 'Windows Logs'\nPress find\nType: 'MemoryDiagnostics-Results'")
 
-def openMsConfig():
+def openMsConfig(): #Opens msconfig.exe via PowerShell, to change things like boot order
 	print("\nOpening System Configuration")
 	run(["powershell", "C:\\WINDOWS\\system32\\msconfig.exe"], shell=True)
 	print("Opened System Configuration\nEnsure 'Normal Startup' is selected\nSwitch to 'Boot' tab\nRemove any unwanted OS'")
 
-def openProgramUninstaller():
-	print("\nOpening Installed Apps")
-	run(["powershell", "start ms-settings:appsfeatures-app"], shell=True)
-	print("Opened Installed Apps\nUninstall apps from here")
+def	openTaskManager(): #Opens task manager with the Taskmgr.exe file via PowerShell
+	print("\nOpening Task Manager")
+	run(["powershell", "C:\\WINDOWS\\system32\\Taskmgr.exe"], shell=True)
+	print("Opened Task Manager\nMonitor system components")
 
-def openCrystalDiskMark():
+def runFurmark(): #Open the portable version of FurMark for GPU testing, via PowerShell
+	print("\nOpening Furmark")
+	try:
+		run(["powershell", "FurMarkPortable\\FurMark_win64\\FurMark_GUI.exe"], shell=False)
+		print("Opened Furmark\nRun the highest resolution benchmark possible")
+	except:
+		print("ERROR: Couldn't open Furmark")
+		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
+
+def runCinebench(): #Open the portable version of Cinebench for CPU testing, via PowerShell
+	print("\nOpening Cinebench")
+	try:
+		run(["powershell", "CinebenchPortable\\Cinebench.exe"], shell=False)
+		print("Opened Cinebench\nRun benchmarks")
+	except:
+		print("ERROR: Couldn't open Cinebench")
+		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
+
+def openCrystalDiskMark(): #Open the portable version of CrystalDiskMark for storage testing, via PowerShell
 	print("\nOpening CrystalDiskMark")
 	try:
 		run(["powershell", "CrystalDiskMarkPortable\\DiskMark64.exe"], shell=False)
@@ -127,16 +115,24 @@ def openCrystalDiskMark():
 	except:
 		print("ERROR: Couldn't open CrystalDiskMark")
 		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
+	
+def openCrystalDiskInfo(): #Open the portable version of CrystalDiskInfo for storage info, via PowerShell
+	print("\nOpening CrystalDiskInfo")
+	try:
+		run(["powershell", "CrystalDiskInfoPortable\\DiskInfo64.exe"], shell=False)
+		print("Opened CrystalDiskInfo\nCheck storage health")
+	except:
+		print("ERROR: Couldn't open CrystalDiskInfo")
+		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
 
-def	openTaskManager():
-	print("\nOpening Task Manager")
-	run(["powershell", "C:\\WINDOWS\\system32\\Taskmgr.exe"], shell=True)
-	print("Opened Task Manager\nMonitor system components")
-
-def openRestorePoint():
-	print("\nOpening System Properties")
-	run(["powershell", "C:\\WINDOWS\\system32\\SystemPropertiesProtection.exe"], shell=True)
-	print("Opened System Properties\nCreate a Restore Point to undo any major system changes")
+def openHWInfo(): #Open the portable version of HWInfo to see specs, via PowerShell
+	print("\nOpening HWInfo64")
+	try:
+		run(["powershell", "HardwareInfoPortable\\HWiNFO64.exe"], shell=False)
+		print("Opened HWInfo 64\nCheck any hardware stats")
+	except:
+		print("ERROR: Couldn't open HWInfo64")
+		print("Check your file structure at https://github.com/3XAY/PC-Utilities in the README.md file, under the File Structure section")
 
 #Get system specs
 sysSpecsText = "Loading..."
@@ -155,7 +151,7 @@ for cpu in c.Win32_Processor():
 sysSpecsText += "\n———————————————————————————"
 
 #Get GPU information
-sysSpecsText += "\n\nGPU information:"
+sysSpecsText += "\n\nGPU Information:"
 for gpu in c.win32_VideoController():
 	sysSpecsText += "\nModel: " + str(gpu.Name)
 	sysSpecsText += "\nStatus: " + str(gpu.Status) +"\n"
@@ -163,7 +159,7 @@ for gpu in c.win32_VideoController():
 sysSpecsText += "\n———————————————————————————"
 
 #Get RAM info
-sysSpecsText += "\n\nRAM information:"
+sysSpecsText += "\n\nRAM Information:"
 totalRam = 0
 slots = 0
 for ram in c.Win32_PhysicalMemory():
@@ -183,7 +179,7 @@ sysSpecsText += "\nSlots being used: " + str(slots)
 sysSpecsText += "\n———————————————————————————"
 
 #Get storage info
-sysSpecsText += "\n\nStorage information:"
+sysSpecsText += "\n\nStorage Information:"
 for disk in c.Win32_DiskDrive():
 	sysSpecsText += "\nModel: " + str(disk.Model)
 	sysSpecsText += "\nCapacity: " + str(round((int(disk.Size)) / (1024**3), 2)) + "GB" #Bytes to GB
@@ -192,7 +188,7 @@ for disk in c.Win32_DiskDrive():
 sysSpecsText += "\n———————————————————————————"
 
 #Get network info
-sysSpecsText += "\n\nNetwork information:"
+sysSpecsText += "\n\nNetwork Information:"
 sysSpecsText += "\n(Only connected interfaces are shown)\n"
 for adapter in c.Win32_NetworkAdapter(NetEnabled=True): #Ensures only active adapters are listed
 	sysSpecsText += "\nName: " + str(adapter.Name)
