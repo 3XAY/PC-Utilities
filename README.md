@@ -10,7 +10,7 @@ This software has been tested on Windows 11, but should work for Windows 10. If 
 TLDR; __It's a collection of useful commands and apps for setting up, benchmarking, and maintaining PCs.__
 ![a screenshot of the application](https://raw.githubusercontent.com/3XAY/PC-Utilities/main/screenshot.png)
 
-[Demo link](https://cloud-eosrtjuvn-hack-club-bot.vercel.app/0demov1-5.mp4)
+[Demo link](https://cloud-8u00hr6il-hack-club-bot.vercel.app/0pc-utilitiesv1-6demovideo_-_made_with_clipchamp.mp4)
 
 ## Installation
 Simply download the **'PC-Utilities-Installer.exe'** file from the latest release, open it, and let it do its magic. <br>
